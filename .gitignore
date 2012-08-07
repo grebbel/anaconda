@@ -3,7 +3,7 @@
 /tmp
 
 .DS_Store
-.tmproj
+*.tmproj
 
 *.rbc
 *.sassc
