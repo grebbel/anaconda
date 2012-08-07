@@ -6,7 +6,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :assignee # belongs_to :user
       t.string :entity, :limit => 50
       t.integer :entity_id
-      t.timestamps
+      t.timestamps :null => true
     end
   end
 end

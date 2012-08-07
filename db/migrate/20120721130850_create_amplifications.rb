@@ -5,7 +5,7 @@ class CreateAmplifications < ActiveRecord::Migration
       t.integer :cycle, :null => false
       t.float :rn, :null => false
       t.float :delta_rn, :null => false
-      t.timestamps
+      t.timestamps :null => true
     end
   end
 end

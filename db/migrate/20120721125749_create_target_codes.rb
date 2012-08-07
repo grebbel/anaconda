@@ -3,7 +3,7 @@ class CreateTargetCodes < ActiveRecord::Migration
     create_table :target_codes do |t|
       t.belongs_to :target, :null => false
       t.string :code, :limit => 50, :null => false
-      t.timestamps
+      t.timestamps :null => true
     end
     add_index :target_codes, :code, :unique => true    
   end

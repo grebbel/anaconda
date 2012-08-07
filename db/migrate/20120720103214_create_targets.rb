@@ -3,7 +3,7 @@ class CreateTargets < ActiveRecord::Migration
     create_table :targets do |t|
       t.string :name, :limit => 50, :null => false
       t.string :description, :limit => 255
-      t.timestamps
+      t.timestamps :null => true
     end
     add_index :targets, :name, :unique => true
   end

@@ -7,7 +7,7 @@ class CreateColors < ActiveRecord::Migration
       t.integer :green, :null => false
       t.integer :blue, :null => false
       t.float :luminance, :null => false
-      t.timestamps      
+      t.timestamps :null => true      
     end
   end
 end

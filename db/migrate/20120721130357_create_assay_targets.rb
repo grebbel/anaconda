@@ -4,7 +4,7 @@ class CreateAssayTargets < ActiveRecord::Migration
       t.belongs_to :assay, :null => false
       t.belongs_to :target, :null => false
       t.float :treshold, :null => false
-      t.timestamps
+      t.timestamps :null => true
     end
     add_index :assay_targets, [:assay_id, :target_id], :unique => true
   end

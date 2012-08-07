@@ -9,7 +9,7 @@ class DropRequestTargets < ActiveRecord::Migration
       t.belongs_to :request, :null => false
       t.belongs_to :target, :null => false
       t.belongs_to :assay_id
-      t.timestamps
+      t.timestamps :null => true
     end
   end
   

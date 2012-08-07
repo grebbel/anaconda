@@ -3,7 +3,7 @@ class CreateTargetTypes < ActiveRecord::Migration
     create_table :target_types do |t|
       t.string :name, :length => 50, :null => false
       t.string :description, :length => 255
-      t.timestamps
+      t.timestamps :null => true
     end
   end
 end

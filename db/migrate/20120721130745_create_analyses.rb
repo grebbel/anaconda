@@ -6,7 +6,7 @@ class CreateAnalyses < ActiveRecord::Migration
       t.belongs_to :assay
       t.float :ct
       t.float :treshold
-      t.timestamps
+      t.timestamps :null => true
     end
   end
 end

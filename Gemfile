@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem 'activerecord-jdbcmysql-adapter', :platform => :jruby
-gem 'mysql', :platform => :ruby
+gem 'pg', :platform => :ruby
 gem 'json'
 gem 'haml'
 gem 'devise'
