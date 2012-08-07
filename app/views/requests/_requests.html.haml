@@ -1,0 +1,23 @@
+= render 'shared/pagination', :collection => requests
+%table.requests.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th.request= cat('request')
+      %th.targets= cat('targets')
+      %th.due= cat('due')
+      %th.actions
+  %tfoot
+    %tr
+      %td{:colspan => 4}
+        = link_to cat('new'), new_request_path, :class => :btn        
+  %tbody
+    - requests.each do |req|
+      %tr
+        %td.request= link_to req.description, req
+        %td.targets
+          %ul
+            - req.targets.each do |target|
+              %li= target.name
+        %td.due= due_in req.due_date
+        %td.actions= delete_link_to req, :title => req.description
+= render 'shared/pagination', :collection => requests

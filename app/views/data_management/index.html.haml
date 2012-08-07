@@ -1,0 +1,8 @@
+%h1= cat('title')
+
+%h2= cat('clean_data')
+= button_to cat('delete_requests.caption'), destroy_all_requests_path, :method => :delete, :confirm => cat("delete_requests.confirm"), :class => 'btn btn-danger', :disabled => Request.count == 0
+- if Request.count == 0
+  = cat('delete_requests.none')
+- else
+  = raw cat('delete_requests.info', :count => Request.count)

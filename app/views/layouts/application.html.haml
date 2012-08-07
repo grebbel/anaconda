@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    = render 'shared/fouc_fix'
+    %base{ :href => root_path }
+    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0' }
+    %title= page_title
+    = stylesheet_link_tag "application", :media => "all"
+    = csrf_meta_tags
+  %body#styled-content{:class => "#{controller.controller_name} #{controller.action_name}"}
+    = render 'layouts/navbar'
+    - if content_for?(:content)
+      = yield :content
+    - else
+      .container-fluid
+        = render 'layouts/content'
+    = javascript_include_tag "application"

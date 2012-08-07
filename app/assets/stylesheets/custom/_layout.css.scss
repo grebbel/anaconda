@@ -1,0 +1,21 @@
+.pagination-container {
+  margin: ($baseLineHeight / 2) 0;
+  .pagination {
+    margin: 0;
+    float: left;
+  }
+  .info {
+    float: right;
+    margin: 0;
+    select.page-size {
+      width: auto;
+      margin-left: ($baseLineHeight / 2);
+    }
+  }
+}
+
+// Disable float for navigation markup.
+.breadcrumbs .nav.pull-left {
+  float: none;
+  margin: 0;
+}

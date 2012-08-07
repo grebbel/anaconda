@@ -1,0 +1,11 @@
+body.assays {
+  
+  &.index table {
+    td, th {
+      &.name { width: 35%; }
+      &.targets { width: 50%; }
+      &.actions { width: 15%; }
+    }
+  }
+  
+}

@@ -1,0 +1,8 @@
+= simple_form_for @tag do |f|
+  %fieldset
+    = render 'shared/legend'
+    = render 'shared/error_messages', :object => @tag
+    = f.input :name, :input_html => {:autofocus => :autofocus}
+    = f.input :category, :size => 50, :maxlength => 50
+    = f.input :description, :as => :text, :input_html => {:rows => 8, :cols => 60}
+    = render 'shared/form_buttons', :f => f

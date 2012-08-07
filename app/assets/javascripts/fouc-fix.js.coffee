@@ -1,0 +1,2 @@
+jQuery ->
+  $('html').removeClass('js')

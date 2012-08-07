@@ -1,0 +1,10 @@
+%ul.nav.pull-right
+  %li.dropdown
+    %a.dropdown-toggle{:href => '#', :data => { :toggle => :dropdown }}
+      = current_user.display_name
+      %span.caret
+    %ul.dropdown-menu
+      %li
+        %a{:href => edit_user_registration_path(current_user)}= t('navigation.profile')
+      %li
+        =link_to t('navigation.log_out'), destroy_user_session_path, :method => :delete

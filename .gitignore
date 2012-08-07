@@ -1,0 +1,21 @@
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+.DS_Store
+.tmproj
+
+*.rbc
+*.sassc
+.sass-cache
+.rspec
+/.bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html

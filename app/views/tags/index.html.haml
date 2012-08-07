@@ -1,0 +1,20 @@
+%h1= heading
+= render 'shared/pagination'
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th.name= t('tags.index.name')
+      %th.category= t('tags.index.category')
+      %th.description= t('tags.index.description')
+      %th.actions
+  %tfoot
+    %tr
+      %td{:colspan => 4}
+        = link_to t('tags.index.new'), new_tag_path, :class => :btn
+  %tbody
+    - @tags.each do |tag|
+      %tr
+        %td.name= link_to tag.name, edit_tag_path(tag)
+        %td.category= tag.category
+        %td.description= tag.description
+        %td.actions= delete_link_to tag

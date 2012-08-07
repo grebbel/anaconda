@@ -1,0 +1,289 @@
+en:
+  # common
+  cancel: Cancel
+  or: or
+  in: in
+  ago: ago
+  form_errors: There were errors filling in this form.
+  page_size:
+    option: "%{page_size} per page"
+  select_tags_placeholder: " " # Use a blank placeholder to work around 'chosen' rendering issue.
+  select_target: <Select Target>
+  select_type: <Select Type>
+  no_content: No content to display on this page.
+  go_to_first_page: "Go to first page"
+  
+  request_popover_title: Targets
+  
+  errors:
+    task_completed: Task is already completed.
+    task_not_assigned: "Task is not assigned to user %{user}"
+    
+  # Controller-specific
+  assignee_button:
+    unassigned: <Unassigned>
+    assign_to_me: Assign to me
+    assign_to: "Assign to %{user}"
+    unassign: Unassign
+  admin:
+    title: Admin
+    info: |
+      <p>Edit reference data or perform user administration.</p>
+    reference_data: 
+      title: Reference Data
+    tags:
+      title: Tags
+      info: |
+        <p>Tags let you classify content using a <a href="http://en.wikipedia.org/wiki/Folksonomy" rel="external">Folksonomy</a>.</p>
+      edit: Edit Tags
+    assays:
+      title: Assays
+      info: |
+        <p>
+      edit: Edit Assays
+    targets:
+      title: Targets
+      info: |
+        <p>
+      edit: Edit Targets
+  amplification_generators:
+    new:
+      title: Generate Amplifications
+      info: |
+        <p>Generates amplifications for analyses without amplification data.</p>
+        <p>Existing amplification data is not affected.</p>
+      cycles: Cycles
+      submit: Generate Amplifications
+    create:
+      generated: "Generated amplifications for %{analysis_count} analyses."
+      none: Could not find analyses without amplification data. No amplification data generated.
+  analyses:
+    breadcrumb_title: "%{target} analysis for %{request}"
+    index:
+      title: Analyses
+      target: Target
+      request: Request
+      assay: Assay
+      treshold: Treshold
+      ct: CT
+  application:
+    name: Anaconda
+  assays:
+    index:
+      title: Assays
+      name: Name
+      targets: Targets
+      new: New Assay
+      delete:
+        caption: Delete Assay
+        confirm: Are you sure you want to delete this Assay?
+    new:
+      title: New Assay
+    create:
+      title: New Assay
+    edit:
+      title: Edit Assay
+    update:
+      title: Edit Assay
+    add_assay_target: Add Target
+    remove_assay_target: Remove Target
+    targets: Targets / Tresholds
+    errors: "There were errors filling out this Assay:"
+  colors:
+    index:
+      title: Target Colors
+      name: Name
+      color: Color
+  dashboard:
+    index:
+      my_tasks: My Tasks
+      activity: Activity
+      request: Request
+      task: Task
+      assignee: Assignee
+      due: Due
+    navigation:
+      heading: Dashboard
+      overview: Overview
+  data_management:
+    index:
+      title: Data Management
+      clean_data: Clean Data
+      delete_requests: 
+        caption: Delete all requests
+        confirm: Are you sure you want to delete all requests? (This action cannot be undone.)
+        none: There are currently no requests in the database.
+        info: |
+          <p>Delete <strong>all %{count} requests</strong> and related analyes and tasks from the database.
+          Use this to start testing scenarios with a clean slate.</p>
+    delete_requests:
+      notice: "Deleted %{count} requests."
+  login:
+    title: Log In
+    remember_me: Keep me logged in
+    no_login: Not a registered user?
+    submit: Log in
+    register: Register
+  navigation:
+    dashboard: Dashboard
+    work: Work
+    results: Results
+    admin: Admin
+    tags: Tags
+    targets: Targets
+    colors: Target Colors
+    assays: Assays
+    analyses: Analyses
+    requests: Requests
+    tasks: Tasks
+    home: Overview
+    reference_data: Reference Data
+    request_generators: Generate Requests
+    amplification_generators: Generate Amplifications
+    data_management: Manage Data
+    test_data: Testing
+    profile: Profile
+    log_out: Log out    
+  pages:
+    admin:
+      title: Admin
+    work:
+      title: Work
+    results:
+      title: Results
+  profile:
+    title: My Profile
+    password: Password
+    password_hint: Please provide your password to make changes
+    submit: Save changes
+    cancel: Cancel
+  requests:
+    index:
+      title: Requests
+      request: Request
+      due: Due
+      targets: Targets
+      new: New Request
+    delete:
+      caption: Delete Request
+      confirm: Are you sure you want to delete this Request?
+    new:
+      title: New Request
+    show:
+      title: '%{description}'
+      uncompleted_tasks: Current Tasks
+      completed_tasks: Completed Tasks
+      description: Task
+      assignee: Assignee
+      status: Status
+      completed: Completed
+      analyses: Analyses
+      target: Target
+      assay: Assay
+      treshold: Treshold
+      ct: CT
+    errors:
+      empty_assays: Please select an assay for every target.
+  request_generators:
+    new:
+      title: Generate Requests
+      info: |
+        <p>Generate random requests for testing purposes.</p>
+      count: Number of Requests
+      max_days: Max number of days before due
+      min_targets: Minimum number of targets
+      max_targets: Maximum number of targets
+      accept: Accept requests automatically
+      accept_hint: Accepting wrequests automatically puts them in a workflow.
+      submit: Generate Requests
+  sign_up:
+    title: Sign Up
+    password_hint: "Hint: use a combination of letter and numbers"
+    confirm_password: Confirm password
+    confirm_password_hint: Type your password again
+    submit: Sign up
+    registered_user: Already a registered user?
+    login: Log in
+  tags:
+    index:
+      title: Tags
+      name: Name
+      category: Category
+      description: Description
+      new: New Tag
+      delete:
+        caption: Delete Tag
+        confirm: Are you sure you want to delete this Tag?
+    new:
+      title: New Tag
+    create:
+      title: New Tag
+    edit:
+      title: Edit Tag
+    update:
+      title: Edit Tag
+    select:
+      none: Select Tags
+      selected: '# tags selected'
+  targets:
+    index:
+      title: Targets
+      name: Name
+      type: Type
+      color: Color
+      codes: Codes
+      tags: Tags
+      new: New Target
+      delete:
+        caption: Delete Target
+        confirm: Are you sure you want to delete this Target?
+    new:
+      title: New Target
+    create:
+      title: New Target
+    edit:
+      title: Edit Target
+    update:
+      title: Edit Target    
+    add_code: Add code
+    remove_code: Remove code
+    codes_hint: Codes must be unique.
+  tasks:
+    breadcrumb_title: "%{task} for %{request}"
+    index:
+      title: All Current Tasks      
+    request: Request
+    targets: "%{count} targets"
+    request: Request
+    task: Task
+    assignee: Assignee
+    due: Due
+    closed: |
+      <em>This task is closed.</em>
+    errors: "There were errors completing this Task:"
+    no_uncompleted: No open tasks remaining.
+    completed: "Completed task: %{task} for %{request}"
+  task_descriptions:
+      review_request: 
+        summary: Review request
+        detail: |
+          <p>Review the request and organize the targets into assays:</p>
+        target: Target
+        assay: Assay
+        select_assay: <Select Assay>
+        no_assay: No assay available for this target.
+        manage_assays: Manage Assays
+        accept: Accept Request
+        accept_info: |
+          <p>Starts analyses for each selected assay. Targets not assigned to an assay are ignored.</p>
+        reject: Reject Request
+        reject_info: |
+          <p>No analyses will be created.</p>
+      prepare_request:
+        summary: Prepare samples
+        detail: |
+          Prepare samples for analysis.
+      analyse_request:
+        summary: Analyse samples
+        detail: |
+          Analyse samples        

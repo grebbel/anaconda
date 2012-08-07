@@ -1,0 +1,11 @@
+= simple_form_for @assay do |f|
+  %fieldset
+    = render 'shared/legend'  
+    = render 'shared/error_messages', :object => @assay
+    = f.input :name, :input_html => { :autofocus => :autofocus }
+    .association
+      = f.label t('assays.targets')
+      = f.fields_for :assay_targets do |builder|
+        = render 'assay_target_association', :f => builder
+      = add_association :add_label => t('assays.add_assay_target'), :f => f, :association => :assay_targets do |assay_target| assay_target.treshold = 0.1 end    
+    = render 'shared/form_buttons', :f => f

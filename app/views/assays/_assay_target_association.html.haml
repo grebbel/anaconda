@@ -1,0 +1,5 @@
+.assay_target.association
+  = f.association :target, :wrapper => :inline, :prompt => t('select_target')
+  = f.text_field :treshold, :value => treshold(f.object.treshold), :size => 4, :maxlength => 4, :class => :number
+  = f.hidden_field :_destroy, {:class => 'destroy' }
+  %input.remove{:type => :button, :value => t('assays.remove_assay_target'), :class => 'btn'}

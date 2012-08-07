@@ -1,0 +1,58 @@
+body.tasks {
+  
+  &.show, &.update {  
+    .summary {  
+      th {
+        padding-right: 1em;
+      }
+      margin-bottom: 1em;
+    }
+  
+    .review-request {
+      table {
+        td, th {
+          &.target { width: 40%; }
+          &.assay { width: 60%; }
+          select {
+            width: 330px;
+          }
+        }
+      }
+    }
+  
+    .form-actions {
+      .reject, .accept {
+        float: left;
+        width: 50%;
+        .info {
+          margin-right: 1em;
+        }
+      }
+    }
+  }
+  
+}
+
+table.tasks {
+  td, th {
+    &.request { width: 35%; }
+    &.due { width: 20%; }
+    &.task { width: 20%; }
+    &.assignee { width: 25%; }
+  }
+}
+
+
+body.requests.show {  
+  table.tasks {
+    tbody.completed tr.heading {
+      text-align: center;
+    }
+    td, th {
+      &.task { width: 35%; }
+      &.assignee { width: 30%; }
+      &.status { width: 35%; }
+    }
+  }
+
+}

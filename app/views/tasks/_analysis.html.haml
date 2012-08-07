@@ -1,0 +1,10 @@
+%tr
+  %td.target
+    = f.input :target_id, :as => :hidden
+    = f.object.target.name
+  %td.assay
+    - unless f.object.target.assays.empty?
+      = f.association :assay, :collection => f.object.target.assays, :wrapper => :inline, :prompt => tt('select_assay'), :disabled => task.completed || not_assigned_to_current_user
+    - else
+      = tt('no_assay')
+      = link_to tt('manage_assays'), assays_path

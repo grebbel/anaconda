@@ -1,0 +1,1 @@
+Anaconda.CONTENT_UPDATED_EVENT = "contentUpdated"

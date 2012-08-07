@@ -1,0 +1,21 @@
+%h1= heading
+= render 'shared/pagination'
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th.name= cat('name')
+      %th.targets= cat('targets')
+  %tfoot
+    %tr
+      %td{:colspan => 4}
+        = link_to cat('new'), new_assay_path, :class => :btn
+  %tbody
+    - @assays.each do |assay|
+      %tr
+        %td.name= link_to assay.name, edit_assay_path(assay)
+        %td.target
+          %ul
+            - assay.targets.each do |target|
+              %li= target.name              
+        %td.actions= delete_link_to assay
+= render 'shared/pagination'

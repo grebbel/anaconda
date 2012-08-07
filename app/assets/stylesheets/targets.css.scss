@@ -1,0 +1,14 @@
+body.targets {
+  
+  &.index table {
+    td, th {
+      &.name { width: 32%; }
+      &.color { width: 3%; }
+      &.type { width: 10%; }
+      &.codes { width: 20%; }
+      &.tags { width: 20%; }
+      &.actions { width: 15%; }
+    }
+  }
+  
+}

@@ -1,0 +1,23 @@
+= render 'shared/pagination', :collection => tasks
+%table.tasks.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th.task= cat('task')
+      %th.assignee= cat('assignee')
+      %th.request= cat('request')
+      %th.due= cat('due')
+  %tbody
+    - unless tasks.empty?
+      - tasks.each do |task|
+        %tr
+          %td= link_to_task task
+          %td= assignee_button task
+          %td
+            = link_to task.request.description, task.request, { :class => 'has-popover', :title => t('request_popover_title'), :data => { :content => popover_content(task.request) } }
+          %td= due_in task.request.due_date
+    - else
+      - if params[:page].to_i > 1
+        %tr
+          %td{:colspan => 4}
+            = render 'shared/no_content_on_page' 
+= render 'shared/pagination', :collection => tasks

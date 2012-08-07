@@ -1,0 +1,12 @@
+body.tags {
+  
+  &.index table {
+    td, th {
+      &.name { width: 35%; }
+      &.category { width: 25%; }
+      &.description { width: 25%; }
+      &.actions { width: 15%; }
+    }
+  }
+  
+}

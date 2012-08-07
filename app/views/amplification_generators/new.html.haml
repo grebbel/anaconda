@@ -1,0 +1,7 @@
+%h1= cat('title')
+= raw cat('info')
+= simple_form_for @amplification_generator, :html => { :class => 'horizontal-form'} do |f|
+  %fieldset
+    = f.input :cycles, :label => cat('cycles'), :as => :integer, :input_html => { :autofocus => :autofocus }
+    .form-actions
+      = f.submit :class => 'btn btn-primary', :value => cat('submit')

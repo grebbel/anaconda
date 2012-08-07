@@ -1,0 +1,4 @@
+.code.association
+  = f.text_field :code, :size => 40, :maxlength => 50
+  = f.hidden_field :_destroy, {:class => 'destroy' }
+  %input.remove.btn{:type => :button, :value => t('targets.remove_code')}

@@ -1,0 +1,13 @@
+body.analyses {
+  &.index {
+    table {
+      td, th {
+        &.target { width: 25%; }
+        &.request { width: 25%; }
+        &.assay { width: 25%; }
+        &.treshold { width: 10%; }
+        &.ct { width: 10%; }
+      }
+    }
+  }
+}

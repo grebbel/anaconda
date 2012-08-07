@@ -1,0 +1,5 @@
+- flash.each do |name, message|
+  .alert{ :class => "alert-#{name == :notice ? :success : :error }", :data => { :dismiss => :alert} }
+    %a.close{:href => '#'} &times;
+    = message
+    

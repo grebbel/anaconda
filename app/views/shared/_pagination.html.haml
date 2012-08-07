@@ -1,0 +1,9 @@
+.pagination-container.clearfix
+  = paginator collection
+  .info    
+    - unless collection.empty?
+      = "#{collection.offset + 1} - #{collection.offset + collection.length} / #{collection.total_entries}"
+    %select.page-size
+      - [10, 25, 50, 100].each do |page_size|
+        %option{:value => page_size, :selected => (page_size == controller.page_size ? 'selected' : nil)}
+          = t('page_size.option', :page_size => page_size)

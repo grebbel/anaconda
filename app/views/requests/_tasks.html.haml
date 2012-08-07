@@ -1,0 +1,28 @@
+%h2= cat('uncompleted_tasks')
+%table.tasks.uncompleted.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th.description= cat('description')
+      %th.assignee= cat('assignee')
+      %th.status= cat('status')
+  %tbody
+    - tasks.uncompleted.each do |task|
+      %tr
+        %td.task= link_to_task task
+        %td.assignee= assignee_button task
+        %td.status
+
+- unless tasks.completed.empty?
+  %h2= cat('completed_tasks')
+  %table.tasks.completed.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.task= cat('description')
+        %th.assignee= cat('assignee')
+        %th.status= cat('completed')
+    %tbody
+      - tasks.completed.each do |task|
+        %tr
+          %td.task= link_to_task task
+          %td.assignee= task.assignee.display_name if task.assignee
+          %td.status= time_ago task.updated_at

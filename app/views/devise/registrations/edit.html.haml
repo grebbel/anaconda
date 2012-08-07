@@ -1,0 +1,10 @@
+%h2= t('profile.title')
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => ['profile', 'horizontal-form']}) do |f|
+  = devise_error_messages!
+  %fieldset
+    = f.input :email, :required => true, :input_html => {:autofocus => :autofocus}
+    = f.input :first_name
+    = f.input :prefix
+    = f.input :last_name
+    = f.input :current_password, :hint => t('profile.password_hint'), :required => true, :label => t('profile.password')
+  = render 'shared/submit_or_cancel', :f => f, :submit_label => t('profile.submit')

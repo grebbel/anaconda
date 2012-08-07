@@ -1,0 +1,11 @@
+%h1= t('sign_up.title')
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => ['sign_up', 'vertical-form']}) do |f|
+  = devise_error_messages!
+  %fieldset
+    = f.input :email, :required => true, :input_html => {:autofocus => :autofocus, :autocomplete => :off}
+    = f.input :password, :hint => t('sign_up.password_hint'), :required => true
+    = f.input :password_confirmation, :label => t('sign_up.confirm_password'), :hint => t('sign_up.confirm_password_hint'), :required => true
+  = f.button :submit, :value => t('sign_up.submit')
+%p
+  = t('sign_up.registered_user') 
+  = link_to t('sign_up.login'), new_user_session_path

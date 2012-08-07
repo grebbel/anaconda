@@ -1,0 +1,65 @@
+.amplification-graph {
+  position: relative;
+  .overlay {
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    .ct {      
+      position: absolute;
+      color: #202020;
+      width: 42px;
+      height: 19px;
+      border: 1px #202020 solid;
+      cursor: pointer;
+      .caption {
+        position: absolute;        
+        background: none;
+        top: 0px;
+        left: 5px;
+        color: white;
+        font-weight: bold;
+      }
+      &.positive {
+        background: green;
+      }
+      &.negative {
+        background: red;
+      }
+      &.indeterminate {
+        background: orange;
+      }
+      &.undecided {
+        background: white;
+        .caption { color: #202020; }
+      }
+    }
+  }
+}
+
+.popover-content {
+  .ct {
+    td, th {
+      vertical-align: top;
+    }        
+    .buttons {
+      margin-top: 0.5em;
+      padding: 1em;
+      button {
+        display: block;
+        margin-bottom: 0.5em;
+        width: 8em;
+        &.positive {
+          float: left;
+        }
+        &.negative {
+          float: right;
+        }        
+        &.indeterminate {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}

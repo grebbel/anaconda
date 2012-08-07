@@ -1,0 +1,16 @@
+.task{:class => @task.description.dasherize}
+  .summary
+    %h1= task_summary(@task)
+    %table
+      %tr
+        %th=cat('request')
+        %td=link_to @task.request.description, @task.request
+      %tr
+        %th= cat('due')
+        %td= due_in @task.request.due_date
+      %tr
+        %th= cat('assignee')
+        %td= assignee_button @task, :refresh_page => true
+  .detail
+    = raw task_detail(@task)
+  = render @task.description, :task => @task

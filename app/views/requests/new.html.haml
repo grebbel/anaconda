@@ -1,0 +1,9 @@
+= simple_form_for @request do |f|
+  %fieldset
+    = render 'shared/legend'
+    = render 'shared/error_messages', :object => @request
+    = f.input :description, :input_html => { :autofocus => :autofocus }
+    = f.input :identifier
+    = f.input :due_date, :as => :date
+    = f.association :targets, :input_html => { :size => Target.count }
+    = render 'shared/form_buttons', :f => f

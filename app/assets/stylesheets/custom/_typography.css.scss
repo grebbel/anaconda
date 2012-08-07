@@ -1,0 +1,29 @@
+h1 {
+  margin: 0 0 ($baseLineHeight / 2) 0;
+}
+
+h2 {
+  margin: ($baseLineHeight / 3) 0;
+}
+
+body.index table.table {  
+  margin: ($baseLineHeight / 2) 0;
+}
+
+table {
+  th {
+    text-align: left;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    li {
+      line-height: auto;
+    }
+  }
+}
+
+
+.errors {
+  color: red;
+}

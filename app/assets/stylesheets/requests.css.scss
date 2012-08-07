@@ -1,0 +1,8 @@
+table.requests {
+  tr, th {
+    &.request { width: 35%; }
+    &.targets { width: 25%; }
+    &.due { width: 20%; }
+    &.actions { width: 20%;}
+  }
+}

@@ -1,0 +1,6 @@
+- if content_for? :sidebar
+  .well= yield :sidebar
+- else
+  - nav = render_navigation :level => 2
+  - unless nav.blank?
+    .well= nav

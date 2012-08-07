@@ -1,0 +1,17 @@
+= render 'shared/pagination'
+
+%table.tasks.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th.request= cat('request')
+      %th.due= cat('due')
+      %th.task= cat('task')
+      %th.assignee= cat('assignee')
+  %tbody
+    - @tasks.each do |task|
+      %tr
+        %td.request= link_to task.request.description, task.request
+        %td.due= due_in task.request.due_date
+        %td.task= link_to_task task
+        %td.assignee= assignee_button task
+        

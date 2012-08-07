@@ -1,0 +1,8 @@
+.row-fluid
+  .span3
+    = render 'layouts/sidebar'
+  .span9
+    = render 'shared/flash_messages'
+    - if show_breadcrumbs
+      = render_navigation :renderer => BootstrapBreadcrumbRenderer, :static_leaf => true
+    = yield

@@ -1,0 +1,10 @@
+%h1= cat('title')
+= raw cat('info')
+= simple_form_for @request_generator, :html => { :class => 'horizontal-form'} do |f|
+  %fieldset
+    = f.input :count, :label => cat('count'), :as => :integer, :input_html => { :autofocus => :autofocus }
+    = f.input :max_days, :label => cat('max_days'), :as => :integer
+    = f.input :min_targets, :label => cat('min_targets'), :as => :integer
+    = f.input :max_targets, :label => cat('max_targets'), :as => :integer
+    .form-actions
+      = f.submit :class => 'btn btn-primary', :value => cat('submit')

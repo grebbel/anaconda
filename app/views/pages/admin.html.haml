@@ -1,0 +1,16 @@
+%h1= t('admin.title')
+= raw t('admin.info')
+
+%h2= t('admin.reference_data.title')
+
+%h3= t('admin.tags.title')
+= raw t('admin.tags.info')
+%p= link_to t('admin.tags.edit'), tags_path, :class => :btn
+
+%h3= t('admin.targets.title')
+= raw t('admin.targets.info')
+%p= link_to t('admin.targets.edit'), targets_path, :class => :btn
+
+%h3= t('admin.assays.title')
+= raw t('admin.assays.info')
+%p= link_to t('admin.assays.edit'), assays_path, :class => :btn

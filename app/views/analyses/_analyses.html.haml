@@ -1,0 +1,25 @@
+= render 'shared/pagination'
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th.target= cat('target')
+      %th.assay= cat('assay')
+      %th.request= cat('request')
+      %th.treshold= cat('treshold')
+      %th.ct= cat('ct')
+  %tbody
+    - unless analyses.empty?
+      - analyses.each do |analysis|
+        %tr
+          %td.target= link_to analysis.target.name, analysis 
+          %td.assay= analysis.assay.name if analysis.assay
+          %td.request= link_to analysis.request.description, analysis.request
+          %td.treshold= decimal(analysis.actual_treshold)  
+          %td.ct= decimal(analysis.ct)
+    - else
+      - if params[:page].to_i > 1
+        %tr
+          %td{:colspan => 5}
+            = render 'shared/no_content_on_page' 
+        
+= render 'shared/pagination'

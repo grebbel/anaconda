@@ -1,0 +1,23 @@
+%div.btn-group.assignee
+  %a.btn.dropdown-toggle.assignee{ :href => '#', :disabled => task.completed, :data => { :toggle => :dropdown } }
+    - if task.assignee
+      = task.assignee.display_name
+    - else 
+      = t('assignee_button.unassigned')
+    %span.caret
+  %ul.dropdown-menu
+    %li
+    - unless task.assignee == current_user
+      %li
+        = assign_to_user_link :user => current_user, :task => task, :label => t('assignee_button.assign_to_me'), :refresh_page => refresh_page
+    - everyone_else = User.everyone_but current_user, task.assignee
+    - unless everyone_else.empty?
+      - unless task.assignee == current_user
+        %li.divider 
+      - everyone_else.each do |user|
+        %li
+          = assign_to_user_link :user => user, :task => task, :label => t('assignee_button.assign_to', :user => user.display_name), :refresh_page => refresh_page
+    - if task.assignee
+      %li.divider
+      %li
+        = assign_to_user_link :user => nil, :task => task, :label => t('assignee_button.unassign'), :refresh_page => refresh_page
