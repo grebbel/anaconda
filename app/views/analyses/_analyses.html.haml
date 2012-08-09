@@ -14,8 +14,9 @@
           %td.target= link_to analysis.target.name, analysis 
           %td.assay= analysis.assay.name if analysis.assay
           %td.request= link_to analysis.request.description, analysis.request
-          %td.treshold= decimal(analysis.actual_treshold)  
-          %td.ct= decimal(analysis.ct)
+          %td.treshold= decimal(analysis.treshold)  
+          %td.ct
+            %span{ :class => analysis.status }= decimal(analysis.ct)
     - else
       - if params[:page].to_i > 1
         %tr

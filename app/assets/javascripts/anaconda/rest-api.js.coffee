@@ -19,10 +19,14 @@ class Anaconda.RestApi
     })
   
   putJson: (url, data) ->
-    this._sendJson('PUT', url, data)
+    this.sendJson('PUT', url, data)
 
   postJson: (url, data) ->
-    this._sendJson('POST', url, data)
+    this.sendJson('POST', url, data)
     
-
+  # High-level operations
+  
+  calculateCt: (ctCalculations) ->
+    this.postJson('/calculate_ct', { calculations: ctCalculations })
+    
 Anaconda.api = new Anaconda.RestApi

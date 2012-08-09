@@ -1,0 +1,31 @@
+%table.analyses.results.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th.assay= t('analyses.assay')
+      %th.target= t('analyses.target')
+      %th.color
+      %th.treshold= t('analyses.treshold')
+      %th.ct= t('analyses.ct')
+      %th.status= t('analyses.status')
+  %tbody
+    - analyses.each do |analysis|
+      %tr.analysis{ :id => "analysis-#{analysis.id}", :class => (analysis.primary ? :primary : :secondary) }
+        %td.assay= analysis.assay.name if analysis.assay
+        %td.target
+          = link_to analysis.target.name, analysis
+        %td.color
+          - color_hex = analysis.target.color ? analysis.target.color.hex : '000000'
+          %span.color{:style => "background-color: ##{color_hex}"}
+        %td.treshold
+          %input.treshold{:type => :number, :value => decimal(analysis.treshold, 2), :size => 4, :min => 0, :max => 2.0, :step => 0.01, :data => { 'analysis-id' => analysis.id } }
+        %td.ct= decimal(analysis.ct, 2)
+        %td.status
+          - status_name = "status-#{analysis.id}"
+          %div.radio.positive
+            - positive_id = "positive-#{analysis.id}"
+            %input{:id => positive_id, :name => status_name, :type => :radio, :value => :positive, :checked => (analysis.status == 'positive'), :class => 'status', :data => { 'analysis-id' => analysis.id } }
+            %label{:for => positive_id }= t('status.positive')
+          %div.radio.negative
+            - negative_id = "negative-#{analysis.id}"
+            %input{:id => negative_id, :name => status_name, :type => :radio, :value => :negative, :checked => (analysis.status == 'negative'), :class => 'status', :data => { 'analysis-id' => analysis.id } }
+            %label{:for => negative_id }= t('status.negative')

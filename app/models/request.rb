@@ -2,6 +2,7 @@ class Request < ActiveRecord::Base
   
   has_many :analyses, :dependent => :destroy
   has_many :targets, :through => :analyses
+  has_many :assays, :through => :analyses
   has_many :tasks, :dependent => :destroy
   
   attr_accessible :identifier, :description, :due_date, :target_ids, :state, :analyses_attributes
@@ -27,6 +28,23 @@ class Request < ActiveRecord::Base
   
   def assign_uncompleted_tasks_to(user)
     tasks.uncompleted.each { |task| task.assign_to user }
+  end
+  
+  def create_secondary_analyses
+    secondary_analyses.each do |sa|
+      Analysis.create!(:request_id => self.id, :assay_id => sa[:assay_id], :target_id => sa[:target_id], :secondary => true)
+    end
+  end
+  
+  def secondary_analyses
+    assays.inject [] do |assay_targets, assay|        
+      elems = assay.targets.map do |target|         
+        if Analysis.where(:request_id => self.id, :assay_id => assay.id, :target_id => target.id).empty?
+          { :assay_id => assay.id, :target_id => target.id } 
+        end
+      end
+      assay_targets.concat elems.compact
+    end
   end
 
   private
@@ -73,6 +91,8 @@ class Request < ActiveRecord::Base
     before_transition (any - :pending) => any, :do => :complete_open_tasks
     
     after_transition any => (any - [:pending, :rejected]), :do => :create_task
+    
+    after_transition any => :prepare, :do => :create_secondary_analyses
     
   end
   

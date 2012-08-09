@@ -57,10 +57,10 @@ SimpleNavigation::Configuration.run do |navigation|
       secondary.item :tasks, t('navigation.tasks'), tasks_path, :highlights_on => /tasks/ do |task|
         task.item :task_show, cat("breadcrumb_title", :task => task_summary(@task), :request => @task.request.description), task_path(@task) if @task
       end
-      secondary.item :analyses, t('navigation.analyses'), analyses_path, :highlights_on => /analyses/ do |analysis|
+      secondary.item :analyses, t('navigation.analyses'), analyses_path, :highlights_on => /^\/analyses/ do |analysis|
         analysis.item :analysis_show, cat('breadcrumb_title', :request => @analysis.request.description, :target => @analysis.target.name), analysis_path(@analysis) if @analysis && @analysis.id?
       end
-      secondary.item :requests, t('navigation.requests'), requests_path, :highlights_on => /requests/ do |request|
+      secondary.item :requests, t('navigation.requests'), requests_path, :highlights_on => /^\/requests/ do |request|
         request.item :request_show, @request.description, request_path(@request) if @request && @request.id?
       end
     end

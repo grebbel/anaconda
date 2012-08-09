@@ -458,7 +458,6 @@ Kinetic.Type = {
 Kinetic.Canvas = function(width, height) {
     this.element = document.createElement('canvas');
     this.context = this.element.getContext('2d');
-
     // set dimensions
     this.element.width = width;
     this.element.height = height;
@@ -497,7 +496,13 @@ Kinetic.Canvas.prototype = {
      * @methodOf Kinetic.Canvas.prototype
      */
     setWidth: function(width) {
-        this.element.width = width;
+        if (window.devicePixelRatio == 2) {
+          this.element.width = width * 2;
+          this.context.scale(2, 2);
+          this.element.style.width = width + 'px';
+        } else {
+          this.element.width = width;
+        }
     },
     /**
      * set height
@@ -505,7 +510,13 @@ Kinetic.Canvas.prototype = {
      * @methodOf Kinetic.Canvas.prototype
      */
     setHeight: function(height) {
-        this.element.height = height;
+        if (window.devicePixelRatio == 2) {
+          this.element.height = height * 2;
+          this.context.scale(2, 2);
+          this.element.style.height = height + 'px';
+        } else {
+          this.element.height = height;
+        }
     },
     /**
      * get width

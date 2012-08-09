@@ -1,15 +1,17 @@
 class Anaconda.AmplificationGraph
   
-  constructor: (@$e)->
-    @analyses = [ $e.data('analysis') ]
-    @url = $e.data('url')
-    @aspectRatio = $e.data('aspectRatio')
-    @$overlay = $('.overlay', $e)
-    $(window).resize => this.update()
-  
   # Graph ranges
+  
+  getMaxCycle: ->
+    return @maxCycle if @maxCycle
+    maxCycle = 0
+    @analyses.forEach (analysis)-> 
+      if analysis.amplifications
+        maxCycle = analysis.amplifications.length if analysis.amplifications.length > maxCycle
+    @maxCycle = maxCycle
+      
     
-  getCycleRange: -> new Anaconda.Range(1, 45)
+  getCycleRange: -> new Anaconda.Range(1, this.getMaxCycle())
 
   getValueRange: -> new Anaconda.Range(-1.0, 1.0)
   
@@ -23,6 +25,8 @@ class Anaconda.AmplificationGraph
 
   bottomMargin: 20
   
+  # Size
+  
   getWidth: -> @$e.innerWidth()
   
   getAvailableWidth: -> this.getWidth() - @leftMargin - @rightMargin
@@ -34,6 +38,8 @@ class Anaconda.AmplificationGraph
   getAvailableHeight: -> this.getHeight() - @bottomMargin - @topMargin
   
   getVerticalRange: -> new Anaconda.Range(0, this.getAvailableHeight())
+  
+  # Formatting
     
   grid:
     stroke: '#909090'
@@ -49,22 +55,14 @@ class Anaconda.AmplificationGraph
     family: $('body').css('font-family')
     size: 10
     fill: '#202020'
-    
-  ct:
-    label:
-      fill: '#ffffff'
-      stroke: '#202020'
-      strokeWidth: 0.5
-    line:
-      stroke: '#202020'
-      strokeWidth: 1
-      dashes: [4, 2]
-      
-  treshold:
-    stroke: '#202020'
-    strokeWidth: 1
-    dashes: [4, 2]
   
+  constructor: (@$e)->
+    @analyses = $e.data('analyses')
+    @url = $e.data('url')
+    @aspectRatio = $e.data('aspectRatio')
+    @$overlay = $('.overlay', $e)
+    $(window).resize => this.update()
+
   update: ->
     if not @stage
       @stage = new Kinetic.Stage(
@@ -113,100 +111,14 @@ class Anaconda.AmplificationGraph
     @gridLayer = layer
 
   _createAmplificationLayer: ->
-    layer = this._createGraphLayer()
-    @analyses.forEach (analysis) => 
-      layer.add(this._createAmplificationLine(analysis))
-      layer.add(this._createTresholdLine(analysis))
-      if analysis.ct
-        layer.add(this._createCtLine(analysis))
-        #layer.add(this._createCtLabel(analysis))
-        this._createCtLabel(analysis)
-    layer
+    @amplificationLayer = this._createGraphLayer()
+    analyses = @analyses.filter (analysis) -> analysis.amplifications
+    analyses.forEach (analysis) =>
+      plot = new Anaconda.AmplificationPlot(this, analysis)
+      plot.update();
+      @amplificationLayer.add(plot.group)
+    @amplificationLayer
     
-  _createAmplificationLine: (analysis) ->
-    horizontalRange = this.getHorizontalRange()
-    verticalRange = this.getVerticalRange()
-    cycleRange = this.getCycleRange()
-    valueRange = this.getValueRange()
-    amplifications = { }
-    analysis.amplifications.forEach (amplification) -> 
-      amplifications[amplification.cycle] = amplification
-    points = [ ]
-    for cycle in [1..cycleRange.max]
-      amplification = amplifications[cycle]
-      x = cycleRange.map(cycle, horizontalRange)
-      y = valueRange.map(amplification.delta_rn, verticalRange, true)
-      points.push(x)
-      points.push(y)
-    new Kinetic.Line(
-      points: points
-      stroke: analysis.target.color
-      strokeWidth: 2
-    )
-    
-  _createTresholdLine: (analysis) ->
-    y = this.getValueRange().map(analysis.treshold, this.getVerticalRange(), true)
-    new Kinetic.Line(
-      points: [0, y, this.getAvailableWidth(), y]      
-      stroke: @treshold.stroke
-      strokeWidth: @treshold.strokeWidth
-      dashArray: @treshold.dashes
-    )
-    
-  _createCtLine: (analysis) ->
-    x = this.getCycleRange().map(analysis.ct, this.getHorizontalRange())
-    new Kinetic.Line(
-      points: [x, 0, x, this.getAvailableHeight()]
-      stroke: @ct.line.stroke
-      strokeWidth: @ct.line.strokeWidth
-      dashArray: @ct.line.dashes
-    )
-    
-  _createPopoverMarkup: (analysis) ->
-    "
-      <div class='ct'>
-        <table>
-          <tr>
-            <th>CT:</th>
-            <td>#{$.format.number(analysis.ct, '0.00')} (treshold: #{$.format.number(analysis.treshold, '0.00')})</td>
-          </tr>
-          <tr>
-            <th>Assay:</th>
-            <td>#{analysis.assay.name}</td>
-          </tr>
-        </table>
-        <div class='buttons well'>
-          <div class='clearfix'>
-            <button class='btn btn-success positive'>Positive</button>
-            <button class='btn btn-danger negative'>Negative</button>
-          </div>
-          <div class='clearfix'>
-            <button class='btn btn-warning indeterminate'>Indeterminate</button>
-          </div>
-        </div>
-      </div>
-    "
-
-  _createCtLabel: (analysis) ->
-    cycleRange = this.getCycleRange()
-    valueRange = this.getValueRange()
-    x = cycleRange.map(analysis.ct, this.getHorizontalRange()) + @leftMargin
-    y = valueRange.map(analysis.treshold, this.getVerticalRange(), true) + @topMargin    
-    $ct = $("
-      <span class='ct #{analysis.status || 'undecided'}'>
-        <span class='caption'>#{$.format.number(analysis.ct, '0.00')}</span>
-      </span>
-    ")
-    $ct.css('left', "#{x - 21}px").css('top', "#{y - 10}px")    
-    popover = $ct.popover(
-      trigger: 'manual'
-      placement: 'bottom'
-      title: analysis.target.name
-      content: this._createPopoverMarkup(analysis)
-    )
-    popover.on 'click', -> console.log 'click!'
-    $ct.click -> $ct.popover('show')
-    @$overlay.append($ct)
 
   _createCycleLegendLayer: ->
     layer = new Kinetic.Layer(
@@ -276,3 +188,8 @@ class Anaconda.AmplificationGraph
       lineCap: 'square'
       dashArray: @axis.dashes
     ))
+
+Anaconda.AmplificationGraph.create = ($e) ->
+  $('.amplification-graph', $e).each ->
+    amplificationChart = new Anaconda.AmplificationGraph($(this))
+    amplificationChart.update()          

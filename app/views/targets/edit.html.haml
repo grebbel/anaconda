@@ -3,14 +3,14 @@
     = render 'shared/legend'
     = render 'shared/error_messages', :object => @target
     = f.input :name, :input_html => {:autofocus => :autofocus}
-    = f.association :type, :prompt => t('select_type')
+    = f.association :type, :prompt => cat('select_type')
+    = f.association :color, :prompt => cat('select_color')
+    = f.association :tags, :input_html => { 'data-placeholder' => t('select_tags_placeholder'), :class => 'tags'}
     .control-group.association
       = f.label :codes
       = f.fields_for :codes do |builder|
         = render 'code_association', :f => builder
       = add_association :add_label => t('targets.add_code'), :f => f, :association => :codes
       %span.hint= t('targets.codes_hint')
-    = f.association :tags, :input_html => { 'data-placeholder' => t('select_tags_placeholder'), :class => 'tags'}
-    = f.association :color, :class => 'tags', :hint => link_to('Colors', colors_path, :rel => :external)
     = f.input :description, :as => :text, :input_html => { :cols => 80, :rows => 8}
     = render 'shared/form_buttons', :f => f

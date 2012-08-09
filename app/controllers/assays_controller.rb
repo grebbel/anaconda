@@ -25,6 +25,7 @@ class AssaysController < ApplicationController
   def update
     @assay = Assay.find(params[:id])
     if @assay.update_attributes(params[:assay])
+      update_analyses
       redirect_to_index
     else
       render :edit
@@ -34,6 +35,15 @@ class AssaysController < ApplicationController
   def destroy
     Assay.destroy(params[:id])
     redirect_to_index
+  end
+  
+  private
+  
+  def update_analyses
+    Analysis.where(:assay_id => @assay).each do |analysis|
+      analysis.ct = analysis.calculate_ct
+      analysis.save
+    end    
   end
   
 end

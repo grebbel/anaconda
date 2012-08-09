@@ -1,16 +1,3 @@
 %h2= cat('analyses')
-%table.analyses.table.table-striped.table-bordered
-  %thead
-    %tr
-      %th.target= cat('target')
-      %th.assay= cat('assay')
-      %th.treshold= cat('treshold')
-      %th.ct= cat('ct')
-    
-  %tbody
-    - analyses.each do |analysis|
-      %tr
-        %td.target= link_to analysis.target.name, analysis
-        %td.assay= analysis.assay.name if analysis.assay
-        %td.treshold= decimal(analysis.actual_treshold, 2)
-        %td.ct= decimal(analysis.ct, 2)
+
+= render 'shared/analyses', :analyses => analyses

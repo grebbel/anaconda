@@ -17,6 +17,5 @@
 //= require chosen-jquery
 //= require kineticjs
 //= require bootstrap
-//= require canvas-extensions
 //= require anaconda/namespace
 //= require_tree .

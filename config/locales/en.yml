@@ -9,7 +9,6 @@ en:
     option: "%{page_size} per page"
   select_tags_placeholder: " " # Use a blank placeholder to work around 'chosen' rendering issue.
   select_target: <Select Target>
-  select_type: <Select Type>
   no_content: No content to display on this page.
   go_to_first_page: "Go to first page"
   
@@ -61,11 +60,18 @@ en:
     breadcrumb_title: "%{target} analysis for %{request}"
     index:
       title: Analyses
-      target: Target
-      request: Request
-      assay: Assay
-      treshold: Treshold
-      ct: CT
+    show:
+      no_amplification_data: No amplification data available yet.
+      amplification_data: Amplification Data
+      cycle: Cycle
+      rn: RN
+      delta_rn: dRN
+    target: Target
+    request: Request
+    assay: Assay
+    treshold: Treshold
+    ct: CT
+    status: Status
   application:
     name: Anaconda
   assays:
@@ -154,7 +160,7 @@ en:
   profile:
     title: My Profile
     password: Password
-    password_hint: Please provide your password to make changes
+    password_hint: Provide your password to make changes
     submit: Save changes
     cancel: Cancel
   requests:
@@ -175,15 +181,12 @@ en:
       completed_tasks: Completed Tasks
       description: Task
       assignee: Assignee
-      status: Status
       completed: Completed
+      status: Status
       analyses: Analyses
-      target: Target
-      assay: Assay
-      treshold: Treshold
-      ct: CT
     errors:
-      empty_assays: Please select an assay for every target.
+      empty_assays: You must select an assay for every target.
+    all_analyses: All Analyses
   request_generators:
     new:
       title: Generate Requests
@@ -204,6 +207,9 @@ en:
     submit: Sign up
     registered_user: Already a registered user?
     login: Log in
+  status:
+    negative: Negative
+    positive: Positive
   tags:
     index:
       title: Tags
@@ -248,6 +254,8 @@ en:
     add_code: Add code
     remove_code: Remove code
     codes_hint: Codes must be unique.
+    select_color: <Select Color>
+    select_type: <Select Type>
   tasks:
     breadcrumb_title: "%{task} for %{request}"
     index:

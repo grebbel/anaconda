@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807152105) do
+ActiveRecord::Schema.define(:version => 20120809133638) do
 
   create_table "amplifications", :force => true do |t|
     t.integer  "analysis_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20120807152105) do
   end
 
   create_table "analyses", :force => true do |t|
-    t.integer  "request_id", :null => false
+    t.integer  "request_id",                    :null => false
     t.integer  "target_id"
     t.integer  "assay_id"
     t.float    "ct"
@@ -31,9 +31,10 @@ ActiveRecord::Schema.define(:version => 20120807152105) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.boolean  "secondary",  :default => false
   end
 
-  add_index "analyses", ["target_id", "request_id"], :name => "index_analyses_on_target_id_and_request_id", :unique => true
+  add_index "analyses", ["target_id", "request_id", "assay_id"], :name => "index_analyses_on_target_id_and_request_id_and_assay_id", :unique => true
 
   create_table "assay_targets", :force => true do |t|
     t.integer  "assay_id",   :null => false

@@ -4,10 +4,10 @@
   %thead
     %tr
       %th.name= cat('name')
-      %th.color= cat('color')
       %th.type= cat('type')
-      %th.codes= cat('codes')
+      %th.color= cat('color')
       %th.tags= cat('tags')
+      %th.codes= cat('codes')
       %th.actions
   %tfoot
     %tr
@@ -17,17 +17,17 @@
     - @targets.each do |target|
       %tr
         %td.name= link_to target.name, edit_target_path(target)
+        %td.type= (target.type.name if target.type)
         %td.color
           - if target.color
             %span.color{:style => "background-color: ##{target.color.hex}", :title => target.color.name}
-        %td.type= (target.type.name if target.type)
-        %td.codes
-          %ul
-            - target.codes.each do |code|
-              %li= code.code
         %td.tags
           %ul
             - target.tags.each do |tag|
               %li= tag.name
+        %td.codes
+          %ul
+            - target.codes.each do |code|
+              %li= code.code
         %td.actions= delete_link_to target
 = render 'shared/pagination'

@@ -23,7 +23,17 @@ table {
   }
 }
 
-
 .errors {
+  color: red;
+}
+
+td.number, th.number {
+  text-align: right;
+}
+
+.positive {
+  color: green;
+}
+.negative {
   color: red;
 }

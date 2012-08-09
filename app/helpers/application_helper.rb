@@ -121,14 +121,22 @@ module ApplicationHelper
     controller.controller_name != 'registrations' && (controller.action_name == 'edit' || controller.action_name == 'show')
   end
   
-  def analysis_data 
-    render :template => 'analyses/show.json.rabl'  if @analysis
+  def analyses_data(analyses)
+    # We set an instance variable to get hold of it in the RABL templat
+    # TODO: Find out how to get pass local variables to RABL from a 'render' call.
+    @analyses = analyses
+    render :template => 'analyses/index.json.rabl'#, :locals => { :analyses => analyses }
   end
-  
-  def amplification_graph(analysis, options = { })
+
+  def amplification_graph(analyses, options = { })
     options = { :aspect_ratio => (4.0/2.0) }.merge(options)
-    options[:analysis] = analysis
+    options[:analyses] = analyses
     render 'shared/amplification_graph', options
   end
+
+  def analyses_results(analyses)
+    render 'shared/analyses_results', :analyses => analyses
+  end
+
 
 end

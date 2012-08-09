@@ -21,6 +21,10 @@ form {
     font-weight: bold;
   }
   
+  label.remember-me {
+    font-weight: normal;
+  }
+  
   input, textarea, select {
     width: auto;
   }
@@ -49,8 +53,7 @@ form {
   select.tags {
     width: 330px;
   }
-  
-  
+    
   .form-actions .info {
     margin-top: $baseLineHeight / 2; 
   }

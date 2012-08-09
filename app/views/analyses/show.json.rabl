@@ -1,7 +1,7 @@
 object @analysis
-attributes :actual_treshold => :treshold
-attributes :actual_ct => :ct
-attributes :status
+attributes :id, :status
+attributes :treshold
+attributes :ct
 child :target do
   attributes :name, :id
   node (:color) { |target| (target.color ? "##{target.color.hex}" : '#000000') }

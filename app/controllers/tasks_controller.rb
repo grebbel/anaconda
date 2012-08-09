@@ -43,17 +43,17 @@ class TasksController < ApplicationController
     if (params[:accept])
       if req.valid? :review_accept
         req.accept
-        go_to_next_task :review
-      else
+        go_to_next_task_with_state :review
+      else  
         render :show
       end
     else
       req.reject
-      go_to_next_task :review
+      go_to_next_task_with_state :review
     end    
   end
   
-  def go_to_next_task(state)
+  def go_to_next_task_with_state(state)
     tasks = Task.uncompleted.assigned_to(current_user).with_request_in_state(state)
     unless tasks.empty?
       summary = t("task_descriptions.#{@task.description}.summary")

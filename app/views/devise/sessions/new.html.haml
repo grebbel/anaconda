@@ -3,7 +3,7 @@
   = f.input :email, :required => true, :input_html => {:autofocus => :autofocus}
   = f.input :password, :as => :password, :required => true
   - if devise_mapping.rememberable?
-    = f.input :remember_me, :as => :boolean, :label => t('login.remember_me'), :wrapper => :checkbox
+    = f.input :remember_me, :as => :boolean, :label => t('login.remember_me'), :wrapper => :checkbox, :label_html => { :class => 'remember-me' }
   = f.button :submit, :value => t('login.submit'), :class => 'btn btn-primary'
 %p
   = t('login.no_login') 

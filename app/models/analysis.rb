@@ -4,35 +4,45 @@ class Analysis < ActiveRecord::Base
   belongs_to :assay
   has_many :amplifications, :dependent => :destroy
   
-  attr_accessible :request_id, :target_id, :assay_id
+  attr_accessible :request_id, :target_id, :assay_id, :secondary
   accepts_nested_attributes_for :amplifications
   
   validates :request_id, :presence => true
   validates :target_id, :presence => true
   
+  default_scope :order => [:request_id, :assay_id, :secondary, :target_id]
   scope :assigned, where('assay_id IS NOT NULL')
   scope :without_amplifications, joins('LEFT JOIN amplifications ON analyses.id = amplifications.analysis_id').where('analysis_id IS NULL')
   scope :positive, where(:status => :positive)
   scope :negative, where(:status => :negative)
   scope :indeterminate, where(:status => :indeterminate)
   scope :undecided, where(:status => nil)
+  scope :primary, where(:secondary => false)
+  scope :secondary, where(:secondary => true)
   
-  def actual_treshold
-    assay_target = AssayTarget.where(:assay_id => assay.id, :target_id => target.id).first
-    treshold = assay_target.treshold if assay_target
+  def treshold
+    treshold = read_attribute(:treshold)
+    unless treshold
+      if assay_id and target_id
+        assay_target = AssayTarget.where(:assay_id => assay_id, :target_id => target_id).first
+        treshold = assay_target.treshold if assay_target
+      end
+    end
     treshold
   end
   
-  def actual_ct
-    if ct
-      ct
-    else
-      calculate_ct
-    end
+  def ct
+    ct = read_attribute(:ct)
+    ct = calculate_ct unless ct
+    ct
+  end
+  
+  def primary
+    secondary != nil ? !secondary : nil
   end
   
   def calculate_ct(treshold = nil)
-    treshold ||= self.actual_treshold
+    treshold ||= self.treshold
     return nil unless treshold
     
     below_treshold = nil

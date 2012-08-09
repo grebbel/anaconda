@@ -1,5 +1,6 @@
 .amplification-graph {
   position: relative;
+  margin-bottom: 1em;
   .overlay {
     z-index: 1000;
     position: absolute;
@@ -12,26 +13,25 @@
       height: 19px;
       border: 1px #202020 solid;
       cursor: pointer;
+      background: white;
       .caption {
         position: absolute;        
-        background: none;
         top: 0px;
         left: 5px;
-        color: white;
+        color: #202020;
         font-weight: bold;
       }
       &.positive {
         background: green;
+        .caption { color: white; }
       }
       &.negative {
         background: red;
+        .caption { color: white; }
       }
       &.indeterminate {
         background: orange;
-      }
-      &.undecided {
-        background: white;
-        .caption { color: #202020; }
+        .caption { color: white; }
       }
     }
   }
@@ -41,6 +41,7 @@
   .ct {
     td, th {
       vertical-align: top;
+      padding-right: 1em;
     }        
     .buttons {
       margin-top: 0.5em;

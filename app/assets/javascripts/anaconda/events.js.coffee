@@ -1,1 +1,5 @@
-Anaconda.CONTENT_UPDATED_EVENT = "contentUpdated"
+Anaconda.CONTENT_UPDATED_EVENT = 'contentUpdated'
+Anaconda.TRESHOLD_CHANGED_EVENT = 'tresholdChanged'
+Anaconda.STATUS_CHANGED_EVENT = 'statusChanged'
+Anaconda.CT_CALCULATED_EVENT = 'ctCalculated'
+Anaconda.ANALYSIS_SELECTED_EVENT = 'analysisSelected'

@@ -9,6 +9,9 @@ jQuery ->
             eTag = xhr.getResponseHeader('ETag');
             if $e.data('eTag') != eTag
               $e.html($(response).html())
+              $('.amplification-graph', $e).each ->    
+                amplificationChart = new Anaconda.AmplificationGraph($(this))
+                amplificationChart.update()      
               Anaconda.bootstrap.enhance($e)
               $e.data('eTag', eTag)
           .always ->
