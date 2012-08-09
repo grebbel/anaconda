@@ -134,11 +134,11 @@ module ApplicationHelper
     render 'shared/amplification_graph', options
   end
 
-  def amplification_data(analysis, sections = 3)
-    section_size = analysis.amplifications.count / sections
-    sections +=1 if analysis.amplifications.count % sections > 0
+  def amplification_data(analysis, section_size = 15)
+    section_count = analysis.amplifications.count / section_size
+    section_count += 1 if analysis.amplifications.count % section_size > 0
     amplification_sections = [ ]
-    0...sections.times do |index|
+    0...section_count.times do |index|
       index = index * section_size
       amplification_sections << analysis.amplifications[index..(index + section_size - 1)]
     end
