@@ -39,7 +39,9 @@ table.analyses.results {
 }
 
 table.amplifications {
-  width: 33%;
+  width: 30%;
+  float: left;
+  margin-right: 1em;
   td, th {
     &.cycle { width: 30%; }
     &.rn { width: 35%; }

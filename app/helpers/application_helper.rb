@@ -134,9 +134,19 @@ module ApplicationHelper
     render 'shared/amplification_graph', options
   end
 
+  def amplification_data(analysis, sections = 3)
+    section_size = analysis.amplifications.count / sections
+    sections +=1 if analysis.amplifications.count % sections > 0
+    amplification_sections = [ ]
+    0...sections.times do |index|
+      index = index * section_size
+      amplification_sections << analysis.amplifications[index..(index + section_size - 1)]
+    end
+    render 'shared/amplification_data', :analysis => analysis, :amplification_sections => amplification_sections
+  end
+
   def analyses_results(analyses)
     render 'shared/analyses_results', :analyses => analyses
   end
-
-
+  
 end

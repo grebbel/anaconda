@@ -10,18 +10,7 @@
     #graph.tab-pane.active
       = amplification_graph [@analysis]
       = analyses_results [@analysis]
-    #data.tab-pane 
-      %table.amplifications.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th.cycle.number= cat('cycle')
-            %th.rn.number= cat('rn')
-            %th.delta-rn.number= cat('delta_rn')
-        %tbody
-          - @analysis.amplifications.each do |amplification|
-            %tr
-              %td.cycle.number= amplification.cycle
-              %td.rn.number= decimal(amplification.rn, 4)
-              %td.delta-rn.number= decimal(amplification.delta_rn, 4)
+    #data.tab-pane
+      = amplification_data @analysis
 - else
   = cat('no_amplification_data')

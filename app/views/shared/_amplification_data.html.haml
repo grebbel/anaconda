@@ -1,0 +1,14 @@
+.clearfix
+  - amplification_sections.each do |section|
+    %table.amplifications.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th.cycle.number= cat('cycle')
+          %th.rn.number= cat('rn')
+          %th.delta-rn.number= cat('delta_rn')
+      %tbody
+        - section.each do |amplification|
+          %tr
+            %td.cycle.number= amplification.cycle
+            %td.rn.number= decimal(amplification.rn, 4)
+            %td.delta-rn.number= decimal(amplification.delta_rn, 4)
