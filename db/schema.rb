@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20120809133638) do
     t.boolean  "secondary",  :default => false
   end
 
-  add_index "analyses", ["target_id", "request_id", "assay_id"], :name => "index_analyses_on_target_id_and_request_id_and_assay_id", :unique => true
+  add_index "analyses", ["target_id", "request_id", "assay_id"], :name => "index_analyses_on_target_id_and_request_id_and_assay_id"
 
   create_table "assay_targets", :force => true do |t|
     t.integer  "assay_id",   :null => false
