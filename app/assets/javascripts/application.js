@@ -15,7 +15,9 @@
 //= require jquery-timeout
 //= require jquery-format
 //= require chosen-jquery
+//= require canvas-extensions
 //= require kineticjs
+//= require kineticjs-extensions
 //= require bootstrap
 //= require anaconda/namespace
 //= require_tree .

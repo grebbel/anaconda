@@ -53,8 +53,9 @@ class Anaconda.AmplificationPlot
       y = valueRange.map(amplification.delta_rn, verticalRange, true)
       points.push(x)
       points.push(y)
-    @group.add(new Kinetic.Line(
+    @group.add(new KineticExtensions.SmoothLine(
       points: points
+      clippingRegion: [0, 0, @graph.getAvailableWidth(), @graph.getAvailableHeight()]
       stroke: @analysis.target.color
       strokeWidth: 2
     ))
