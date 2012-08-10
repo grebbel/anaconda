@@ -171,6 +171,8 @@ en:
       due: Due
       targets: Targets
       new: New Request
+      new_random: New Random Request
+      generate: Generate Requests
     delete:
       caption: Delete Request
       confirm: Are you sure you want to delete this Request?

@@ -9,7 +9,16 @@
   %tfoot
     %tr
       %td{:colspan => 4}
-        = link_to cat('new'), new_request_path, :class => :btn        
+        .btn-group
+          = link_to cat('new'), new_request_path, :class => :btn
+          %button.btn.dropdown-toggle{:data => { :toggle => :dropdown } }
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              = link_to cat('new_random'), new_request_path(:params => { :generate => true } )
+            %li.divider
+            %li
+              = link_to cat('generate'), new_request_generator_path
   %tbody
     - requests.each do |req|
       %tr

@@ -24,7 +24,7 @@ class RequestGenerator
       targets = all_targets.sample([min_targets + rand(max_targets), max_targets].min)
       params = {:identifier => identifier, :description => random_description, :due_date => due_date, :target_ids => targets.map { |t| t.id }};
       request = Request.new(params)
-      request.start
+      request.start unless options[:disable_start]
       requests << request
     end    
     requests

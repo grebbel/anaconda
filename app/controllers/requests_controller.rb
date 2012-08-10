@@ -14,8 +14,12 @@ class RequestsController < ApplicationController
   end
   
   def new
-    @request = Request.new
-    @request.due_date = Time.now + 7.days
+    if params[:generate]
+      @request = generate_request
+    else
+      @request = Request.new
+      @request.due_date = Time.now + 7.days
+    end
   end
   
   def create
@@ -32,6 +36,15 @@ class RequestsController < ApplicationController
   def destroy
     Request.destroy(params[:id])
     redirect_to_index
+  end
+  
+  private
+  
+  def generate_request
+    generator = RequestGenerator.new
+    generator.count = 1
+    requests = generator.generate_requests :disable_start => true
+    requests[0]
   end
   
 end
