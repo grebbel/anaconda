@@ -110,33 +110,40 @@ class Anaconda.AmplificationPlot
       $('span.ct', @$overlay).css('z-index', 0);      
       @$ctLabel.css('z-index', 1) if focus
       @$ctLabel.show()
-      @$ctLabel.popover(
-        placement: 'bottom'
-        delay: 500
-        title: @analysis.target.name
-        content: => 
-          $('span.ct', @$overlay).css('z-index', 0);      
-          @$ctLabel.css('z-index', 1)          
-          "
-          <div class='ct'>
-            <table>
-              <tr>
-                <th>CT</th>
-                <td>#{$.format.number(@analysis.ct, '0.00')}</td>
-              </tr>
-              <tr>
-                <th>Treshold</th>
-                <td>#{$.format.number(@analysis.treshold, '0.00')}</td>
-              </tr>
-              <tr>
-                <th>Assay</th>
-                <td>#{@analysis.assay.name}</td>
-              </tr>
-            </table>                
-          </div>
-        "
-        @$ctLabel.click (event) => $(event.target).trigger(Anaconda.ANALYSIS_SELECTED_EVENT, { analysisId: @analysis.id })
-      )
+      @$ctLabel.mouseover ->
+        $('span.ct', @$overlay).css('z-index', 0);      
+        $(this).css('z-index', 1)
+      # Displaying the popover causes resize issues when it is displayed near the window edge, so we leave it out for now.
+      #@$ctLabel.popover(
+      #  placement: 'bottom'
+      #  delay: 500
+      #  title: @analysis.target.name
+      #  content: => 
+      #    $('span.ct', @$overlay).css('z-index', 0);      
+      #    @$ctLabel.css('z-index', 1)
+      #    this._popoverContent()
+      #)
+      @$ctLabel.click (event) => $(event.target).trigger(Anaconda.ANALYSIS_SELECTED_EVENT, { analysisId: @analysis.id })
     else
       @$ctLabel.hide() if @$ctLabel      
   
+  _popoverContent: ->
+      "
+      <div class='ct'>
+        <table>
+          <tr>
+            <th>CT</th>
+            <td>#{$.format.number(@analysis.ct, '0.00')}</td>
+          </tr>
+          <tr>
+            <th>Treshold</th>
+            <td>#{$.format.number(@analysis.treshold, '0.00')}</td>
+          </tr>
+          <tr>
+            <th>Assay</th>
+            <td>#{@analysis.assay.name}</td>
+          </tr>
+        </table>                
+      </div>
+    "
+    

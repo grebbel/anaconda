@@ -9,9 +9,9 @@
       %th.status= t('analyses.status')
   %tbody
     - analyses.each do |analysis|
-      %tr.analysis{ :id => "analysis-#{analysis.id}", :class => (analysis.primary ? :primary : :secondary) }
+      %tr.analysis{ :id => "analysis-#{analysis.id}"}
         %td.assay= analysis.assay.name if analysis.assay
-        %td.target
+        %td.target{ :class => (analysis.primary ? :primary : :secondary) }
           = link_to analysis.target.name, analysis
         %td.color
           - color_hex = analysis.target.color ? analysis.target.color.hex : '000000'
