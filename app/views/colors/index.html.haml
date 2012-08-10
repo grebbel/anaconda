@@ -1,8 +1,10 @@
+%h1= cat('title')
+= raw cat('description')
 %table.table
   %thead
     %tr
       %th.color= cat('color')
-  %tbody
+  %tbody    
     - @colors.each do |color|
       %tr
         %td.color

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-timeout
 //= require jquery-format
+//= require jquery-resize
 //= require chosen-jquery
 //= require canvas-extensions
 //= require kineticjs

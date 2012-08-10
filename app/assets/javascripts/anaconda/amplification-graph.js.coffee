@@ -1,5 +1,35 @@
 class Anaconda.AmplificationGraph
   
+  constructor: (@$e)->
+    @analyses = $e.data('analyses')
+    @url = $e.data('url')
+    @aspectRatio = $e.data('aspectRatio')
+    @$overlay = $('.overlay', $e)
+
+  # Margins
+
+  leftMargin: 30
+
+  rightMargin: 10
+
+  topMargin: 10
+
+  bottomMargin: 20
+
+  # Dimensions
+
+  getWidth: -> @$e.innerWidth()
+
+  getHeight: -> this.getWidth() / @aspectRatio
+
+  getAvailableWidth: -> this.getWidth() - @leftMargin - @rightMargin
+
+  getAvailableHeight: -> this.getHeight() - @bottomMargin - @topMargin
+
+  getHorizontalRange: -> new Anaconda.Range(0, this.getAvailableWidth())
+
+  getVerticalRange: -> new Anaconda.Range(0, this.getAvailableHeight())
+
   # Graph ranges
   
   getMaxCycle: ->
@@ -14,30 +44,6 @@ class Anaconda.AmplificationGraph
   getCycleRange: -> new Anaconda.Range(1, this.getMaxCycle())
 
   getValueRange: -> new Anaconda.Range(-1.0, 1.0)
-  
-  # Margins
-
-  leftMargin: 30
-  
-  rightMargin: 10
-  
-  topMargin: 10
-
-  bottomMargin: 20
-  
-  # Size
-  
-  getWidth: -> @$e.innerWidth()
-  
-  getAvailableWidth: -> this.getWidth() - @leftMargin - @rightMargin
-  
-  getHorizontalRange: -> new Anaconda.Range(0, this.getAvailableWidth())
-  
-  getHeight: -> this.getWidth() / @aspectRatio
-  
-  getAvailableHeight: -> this.getHeight() - @bottomMargin - @topMargin
-  
-  getVerticalRange: -> new Anaconda.Range(0, this.getAvailableHeight())
   
   # Formatting
     
@@ -55,15 +61,17 @@ class Anaconda.AmplificationGraph
     family: $('body').css('font-family')
     size: 10
     fill: '#202020'
+    
+  # Main operations
   
-  constructor: (@$e)->
-    @analyses = $e.data('analyses')
-    @url = $e.data('url')
-    @aspectRatio = $e.data('aspectRatio')
-    @$overlay = $('.overlay', $e)
-    $(window).resize => this.update()
-
-  update: ->
+  draw: ->
+    this._update()
+    $.resize.delay = 1000
+    @$e.resize => this._update()
+  
+  # Utility operations
+  
+  _update: ->
     if not @stage
       @stage = new Kinetic.Stage(
         container: @$e[0]
@@ -77,6 +85,8 @@ class Anaconda.AmplificationGraph
     @stage.add(this._createValueLegendLayer())
     @stage.add(this._createAxesLayer())
     
+  # Drawing operations  
+  
   _createGraphLayer: ->
     new Kinetic.Layer(
       x: @leftMargin
@@ -192,4 +202,4 @@ class Anaconda.AmplificationGraph
 Anaconda.AmplificationGraph.create = ($e) ->
   $('.amplification-graph', $e).each ->
     amplificationChart = new Anaconda.AmplificationGraph($(this))
-    amplificationChart.update()          
+    amplificationChart.draw()

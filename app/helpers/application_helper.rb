@@ -122,7 +122,7 @@ module ApplicationHelper
   end
   
   def analyses_data(analyses)
-    # We set an instance variable to get hold of it in the RABL templat
+    # We set an instance variable to get hold of it in the RABL template
     # TODO: Find out how to get pass local variables to RABL from a 'render' call.
     @analyses = analyses
     render :template => 'analyses/index.json.rabl'#, :locals => { :analyses => analyses }

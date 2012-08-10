@@ -98,7 +98,8 @@ en:
   colors:
     index:
       title: Target Colors
-      name: Name
+      description: |
+        <p>These colors can be used to distinguish between targets on amplification graphs.</p>        
       color: Color
   dashboard:
     index:
