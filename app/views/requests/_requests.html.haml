@@ -16,8 +16,8 @@
         %td.request= link_to req.description, req
         %td.targets
           %ul
-            - req.targets.each do |target|
-              %li= target.name
+            - req.analyses.primary.each do |analysis|
+              %li= analysis.target.name
         %td.due= due_in req.due_date
         %td.actions= delete_link_to req, :title => req.description
 = render 'shared/pagination', :collection => requests
