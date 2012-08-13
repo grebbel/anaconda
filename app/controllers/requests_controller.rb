@@ -8,7 +8,8 @@ class RequestsController < ApplicationController
   def show
     @request = Request.find(params[:id])
     @tasks = @request.tasks
-    @analyses = @request.analyses.assigned    
+    @analyses = @request.analyses.assigned
+    @analysis_set = AnalysisSet.new(@analyses)
     render_partial :tasks if request.xhr?
     render_partial :analyses if request.xhr?
   end

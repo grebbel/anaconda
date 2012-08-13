@@ -20,7 +20,8 @@ Anaconda::Application.routes.draw do
   end
   
   post '/tasks/:id/assign_to_user', :controller => :tasks, :action => :assign_to_user, :as => :assign_task_to_user
-  match '/calculate_ct', :controller => :ct_calculation, :action => :calculate_ct, :as => :calculate_ct
+  post '/analyses/calculate_ct', :controller => :analyses, :action => :calculate_ct, :as => :calculate_ct
+  post '/analyses/update_results', :controller => :analyses, :action => :update_results, :as => :update_analyses_results
   
   devise_for :users
 

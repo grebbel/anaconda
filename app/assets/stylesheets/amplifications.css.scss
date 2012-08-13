@@ -37,30 +37,13 @@
   }
 }
 
-.popover-content {
-  .ct {
-    td, th {
-      vertical-align: top;
-      padding-right: 1em;
-    }        
-    .buttons {
-      margin-top: 0.5em;
-      padding: 1em;
-      button {
-        display: block;
-        margin-bottom: 0.5em;
-        width: 8em;
-        &.positive {
-          float: left;
-        }
-        &.negative {
-          float: right;
-        }        
-        &.indeterminate {
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-    }
+table.amplifications {
+  width: 30%;
+  float: left;
+  margin-right: 1em;
+  td, th {
+    &.cycle { width: 30%; }
+    &.rn { width: 35%; }
+    &.delta-rn { width: 35%; }
   }
 }

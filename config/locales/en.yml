@@ -72,6 +72,9 @@ en:
     treshold: Treshold
     ct: CT
     status: Status
+    submit: Save Changes
+    reset: Reset
+    results_updated: "Updated analysis results."
   application:
     name: Anaconda
   assays:

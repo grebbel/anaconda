@@ -113,16 +113,6 @@ class Anaconda.AmplificationPlot
       @$ctLabel.mouseover ->
         $('span.ct', @$overlay).css('z-index', 0);      
         $(this).css('z-index', 1)
-      # Displaying the popover causes resize issues when it is displayed near the window edge, so we leave it out for now.
-      #@$ctLabel.popover(
-      #  placement: 'bottom'
-      #  delay: 500
-      #  title: @analysis.target.name
-      #  content: => 
-      #    $('span.ct', @$overlay).css('z-index', 0);      
-      #    @$ctLabel.css('z-index', 1)
-      #    this._popoverContent()
-      #)
       @$ctLabel.click (event) => $(event.target).trigger(Anaconda.ANALYSIS_SELECTED_EVENT, { analysisId: @analysis.id })
     else
       @$ctLabel.hide() if @$ctLabel      

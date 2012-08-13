@@ -2,9 +2,18 @@ class Anaconda.AmplificationGraph
   
   constructor: (@$e)->
     @analyses = $e.data('analyses')
+    $e.data('amplificationGraph', this)
     @url = $e.data('url')
     @aspectRatio = $e.data('aspectRatio')
     @$overlay = $('.overlay', $e)
+    @analyses.forEach (analysis) ->
+      treshold =  analysis.treshold
+      status = analysis.status
+      ct = analysis.ct      
+      analysis.reset = ->
+        this.treshold = treshold
+        this.status = status
+        this.ct = ct
 
   # Margins
 
@@ -68,6 +77,11 @@ class Anaconda.AmplificationGraph
     this._update()
     $.resize.delay = 1000
     @$e.resize => this._update()
+    
+  reset: ->
+    @analyses.forEach (analysis) ->
+      analysis.reset()
+    this._update()
   
   # Utility operations
   

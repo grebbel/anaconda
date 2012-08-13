@@ -46,4 +46,32 @@ class AnalysesController < ApplicationController
     redirect_to :back
   end
   
+  def calculate_ct
+    @ct_calculations = [ ]
+    params[:calculations].each do |calculation|
+      analysis = Analysis.find(calculation[:analysis_id])
+      if analysis
+        treshold = calculation[:treshold]
+        ct = analysis.calculate_ct(treshold)
+        calculation = CtCalculation.new(:analysis_id => analysis.id, :treshold => treshold, :ct => ct)
+        @ct_calculations.push(calculation)
+      end
+    end
+  end
+  
+  def update_results
+    analyses = params[:analyses]
+    analyses.each do |analysis_id, hash|
+      analysis = Analysis.find(analysis_id)
+      if hash[:treshold]
+        analysis.treshold = hash[:treshold].to_f
+        analysis.ct = analysis.calculate_ct
+      end
+      analysis.status = hash[:status]
+      analysis.save
+    end
+    flash[:notice] = t('analyses.results_updated')
+    redirect_to :back
+  end
+
 end

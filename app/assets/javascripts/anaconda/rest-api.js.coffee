@@ -26,7 +26,7 @@ class Anaconda.RestApi
     
   # High-level operations
   
-  calculateCt: (ctCalculations) ->
-    this.postJson('/calculate_ct', { calculations: ctCalculations })
+  calculateCt: (ctCalculations, persist = false) ->
+    this.postJson('/analyses/calculate_ct', { calculations: ctCalculations, persist: persist })
     
 Anaconda.api = new Anaconda.RestApi

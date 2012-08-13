@@ -20,7 +20,9 @@ table.analyses.results {
     &.target { width: 25%; }
     &.assay { width: 30%; }
     &.treshold { width: 10%; }
-    &.ct { width: 10%; }
+    &.ct { 
+      width: 10%;
+    }
     &.status {
       width: 25%;
       .radio {
@@ -32,19 +34,8 @@ table.analyses.results {
       }
     }
   }
-  input.treshold {
+  input.treshold, input.ct {
     width: 4em;
     margin: 0;
-  }
-}
-
-table.amplifications {
-  width: 30%;
-  float: left;
-  margin-right: 1em;
-  td, th {
-    &.cycle { width: 30%; }
-    &.rn { width: 35%; }
-    &.delta-rn { width: 35%; }
   }
 }
