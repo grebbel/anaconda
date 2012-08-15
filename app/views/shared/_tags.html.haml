@@ -1,0 +1,6 @@
+%ul.nav.nav-pills.nav-stacked
+  - @tags.each do |tag|
+    %li      
+      %a{:href => '#', :class => :tag, :data => { :id => tag.id, :name => tag.name } }
+        %i.icon-tag
+        = tag.name

@@ -1,3 +1,5 @@
 %h1= cat('title')
 
 = autoupdate_partial :analyses
+
+- content_for :sidebar, autoupdate_partial(:tags)

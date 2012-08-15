@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-address
 //= require jquery-timeout
 //= require jquery-format
 //= require jquery-resize
 //= require chosen-jquery
+//= require jquery-autoupdate
 //= require canvas-extensions
 //= require kineticjs
 //= require kineticjs-extensions

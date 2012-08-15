@@ -4,8 +4,14 @@ class AnalysesController < ApplicationController
   
   def index
     if request.xhr?
-      @analyses = Analysis.assigned.paginate :page => params[:page], :per_page => page_size
-      render_partial :analyses 
+      case params[:partial]
+      when 'analyses'
+        @analyses = Analysis.assigned.paginate :page => params[:page], :per_page => page_size
+        render_partial :analyses 
+      when 'tags'
+        @tags = Tag.for_analyses
+        render_partial :tags
+      end
     end
   end
   

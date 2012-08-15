@@ -72,10 +72,6 @@ class Analysis < ActiveRecord::Base
   private
   
   def find_intersection(p1, p2, p3, p4)
-		#double xD1, yD1, xD2, yD2, xD3, yD3
-		#double dot, deg, len1, len2
-		#double segmentLen1, segmentLen2
-		#double ua, ub, div
 
 		# calculate differences
 		xD1 = p2.x - p1.x
