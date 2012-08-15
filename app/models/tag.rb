@@ -16,11 +16,12 @@ class Tag < ActiveRecord::Base
 
   def self.for_analyses(assigned_to_assay = true)
     rel = Tag.
+      select('DISTINCT tags.id, tags.name').
       joins('INNER JOIN target_tags ON target_tags.tag_id = tags.id').
       joins('INNER JOIN targets ON target_tags.target_id = targets.id').
       joins('INNER JOIN analyses ON targets.id = analyses.target_id')
     rel = rel.where('analyses.assay_id IS NOT NULL') if assigned_to_assay
-    rel.group('tags.id')
+    rel
   end
 
   def self.for_requests
