@@ -16,6 +16,12 @@ class Target < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true  
   
   default_scope :order => :name  
+  scope :tagged, lambda { |*tags| 
+    joins("
+      INNER JOIN target_tags ON targets.id = target_tags.target_id
+      INNER JOIN tags ON target_tags.tag_id = tags.id
+      ").where('tags.name' => tags)    
+  }  
   scope :tagged_with, lambda { |tags| joins(:target_tags).where('target_tags.tag_id' => tags) }
   scope :for_requests, lambda { |requests| joins(:analyses).where('analyses.request_id' => requests) }
   scope :with_requests, joins(:analyses)

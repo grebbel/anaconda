@@ -1,8 +1,18 @@
 class RequestsController < ApplicationController
   
   def index    
-    @requests = Request.paginate(:page => params[:page], :per_page => page_size)
-    render_partial :requests if request.xhr?
+    if request.xhr?
+      case params[:partial]
+      when 'requests'
+        @requests = Request
+        @requests = @requests.tagged params[:tags].split(/,/) if params[:tags]
+        @requests = @requests.paginate(:page => params[:page], :per_page => page_size)
+        render_partial :requests
+      when 'tags'
+        @tags = Tag.for_requests
+        render_partial :tags
+      end
+    end
   end
   
   def show

@@ -12,10 +12,13 @@ body.analyses {
   }
 }
 
-table.analyses.results {
+table.analyses {
   .primary {
     font-weight: bold;
-  }
+  }  
+}
+
+table.analyses.results {
   td, th {
     &.target { width: 25%; }
     &.assay { width: 30%; }

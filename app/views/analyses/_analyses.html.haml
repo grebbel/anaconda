@@ -1,5 +1,5 @@
 = render 'shared/pagination'
-%table.table.table-striped.table-bordered
+%table.analyses.table.table-striped.table-bordered
   %thead
     %tr
       %th.target= cat('target')
@@ -11,7 +11,7 @@
     - unless analyses.empty?
       - analyses.each do |analysis|
         %tr
-          %td.target= link_to analysis.target.name, analysis 
+          %td.target{:class => (analysis.primary ? :primary : nil) }= link_to analysis.target.name, analysis 
           %td.assay= analysis.assay.name if analysis.assay
           %td.request= link_to analysis.request.description, analysis.request
           %td.treshold= decimal(analysis.treshold)  

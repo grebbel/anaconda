@@ -3,8 +3,22 @@ class TasksController < ApplicationController
   before_filter :bust_cache, :except => :index
   
   def index
-    @tasks = Task.uncompleted.by_request_date.paginate(:page => params[:page], :per_page => page_size)
-    render_partial :tasks if request.xhr?
+    if request.xhr?
+      case params[:partial] 
+      when 'tasks'
+        @tasks = Task.uncompleted
+        if params[:tags]
+          @tasks = @tasks.tagged params[:tags].split(/,/) 
+        else
+          @tasks = @tasks.by_request_date
+        end
+        @tasks = @tasks.paginate(:page => params[:page], :per_page => page_size)
+        render_partial :tasks 
+      when 'tags'
+        @tags = Tag.for_tasks
+        render_partial :tags
+      end
+    end
   end
   
   def show

@@ -24,8 +24,7 @@ class Analysis < ActiveRecord::Base
       INNER JOIN targets ON analyses.target_id = targets.id
       INNER JOIN target_tags ON targets.id = target_tags.target_id
       INNER JOIN tags ON target_tags.tag_id = tags.id
-      ").where('tags.name' => tags)
-    
+      ").where('tags.name' => tags)    
   }
   
   def treshold

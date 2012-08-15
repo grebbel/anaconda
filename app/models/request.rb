@@ -25,6 +25,14 @@ class Request < ActiveRecord::Base
   default_scope :order => :due_date
   scope :tagged_with, lambda { |tags| joins(:analyses).where('analyses.target_id' => Target.tagged_with(tags)) }
   scope :in_state, lambda { |*states| where(:state => states) }
+  scope :tagged, lambda { |*tags| 
+    joins("
+      INNER JOIN analyses ON requests.id = analyses.request_id
+      INNER JOIN targets ON analyses.target_id = targets.id
+      INNER JOIN target_tags ON targets.id = target_tags.target_id
+      INNER JOIN tags ON target_tags.tag_id = tags.id
+      ").where('tags.name' => tags)    
+  }
   
   def assign_uncompleted_tasks_to(user)
     tasks.uncompleted.each { |task| task.assign_to user }
