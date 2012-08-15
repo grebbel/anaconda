@@ -1,2 +1,5 @@
 %h1= cat('my_tasks')
+
 = autoupdate_partial :tasks
+
+- content_for :sidebar, autoupdate_partial(:tags)

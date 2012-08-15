@@ -27,8 +27,10 @@ class Tag < ActiveRecord::Base
     for_analyses(false).joins('INNER JOIN requests ON analyses.request_id = requests.id')
   end
 
-  def self.for_tasks
-    for_requests.joins('INNER JOIN tasks ON requests.id = tasks.request_id')
+  def self.for_tasks(assignee = nil)
+    rel = for_requests.joins('INNER JOIN tasks ON requests.id = tasks.request_id')
+    rel = rel.where('tasks.assignee' => assignee) if assignee
+    rel
   end
 
 end
