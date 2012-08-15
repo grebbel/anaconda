@@ -14,9 +14,7 @@ jQuery.fn.autoupdate = (options = { }) ->
             eTag = xhr.getResponseHeader('ETag');
             if $e.data('eTag') != eTag
               $e.html($(response).html())
-              Anaconda.AmplificationGraph.create(this)
-              Anaconda.bootstrap.enhance(this)
-              Anaconda.Tags.updateSelection(this)
+              $e.trigger('autoupdate')
               $e.data('eTag', eTag)
           .always ->
             $e.removeData('timeout')

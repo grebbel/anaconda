@@ -6,7 +6,9 @@ class AnalysesController < ApplicationController
     if request.xhr?
       case params[:partial]
       when 'analyses'
-        @analyses = Analysis.assigned.paginate :page => params[:page], :per_page => page_size
+        @analyses = Analysis.assigned
+        @analyses = @analyses.tagged params[:tags].split(/,/) if params[:tags]
+        @analyses = @analyses.paginate :page => params[:page], :per_page => page_size
         render_partial :analyses 
       when 'tags'
         @tags = Tag.for_analyses

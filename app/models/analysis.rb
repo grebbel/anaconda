@@ -19,6 +19,14 @@ class Analysis < ActiveRecord::Base
   scope :undecided, where(:status => nil)
   scope :primary, where(:secondary => false)
   scope :secondary, where(:secondary => true)
+  scope :tagged, lambda { |*tags| 
+    joins("
+      INNER JOIN targets ON analyses.target_id = targets.id
+      INNER JOIN target_tags ON targets.id = target_tags.target_id
+      INNER JOIN tags ON target_tags.tag_id = tags.id
+      ").where('tags.name' => tags)
+    
+  }
   
   def treshold
     treshold = read_attribute(:treshold)
