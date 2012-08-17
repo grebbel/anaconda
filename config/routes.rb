@@ -11,6 +11,7 @@ Anaconda::Application.routes.draw do
   resources :assays
   resources :analyses
   resources :requests
+  resources :import_definitions
   resources :request_generators, :only => [:new, :create]
   resources :amplification_generators, :only => [:new, :create]
   resources :tasks, :only => [ :index, :show, :update ]

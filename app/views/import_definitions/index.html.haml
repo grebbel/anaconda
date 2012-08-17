@@ -1,0 +1,16 @@
+%h2= cat('title')
+
+%table.import-definitions.table.table.striped.table-bordered
+  %thead
+    %th.name= cat('name')
+    %th.description= cat('description')
+    %th.actions
+  %tfoot
+    %td{:colspan => 3}
+      = link_to cat('new'), new_import_definition_path, :class => :btn
+  %tbody
+    - @import_definitions.each do |import_definition|
+      %tr
+        %td.name= link_to import_definition.name, edit_import_definition_path(import_definition)
+        %td.description= import_definition.description
+        %td.actions= delete_link_to import_definition

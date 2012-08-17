@@ -14,6 +14,7 @@ class Target < ActiveRecord::Base
   accepts_nested_attributes_for :codes, :reject_if => lambda { |c| c[:code].blank? }, :allow_destroy => true  
   
   validates :name, :presence => true, :uniqueness => true  
+  validates :description, :length => { :maximum => 255 }
   
   default_scope :order => :name  
   scope :tagged, lambda { |*tags| 

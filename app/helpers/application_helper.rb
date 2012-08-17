@@ -149,4 +149,12 @@ module ApplicationHelper
     render 'shared/analyses_results', :analyses => analyses
   end
   
+  def spreadsheet_column_options(count = 26)
+    columns = [ ]
+    count.times do |index|
+      columns << { :value => index, :label => (('A'.ord + index).chr)}
+    end
+    columns
+  end
+  
 end

@@ -80,6 +80,10 @@ SimpleNavigation::Configuration.run do |navigation|
       secondary.item :assays, t('navigation.assays'), assays_path, :highlights_on => /assays/ do |assay|
         assay.item :assay_edit, @assay.name, edit_assay_path(@assay) if @assay && @assay.id?
       end
+      secondary.item :import_export, t('navigation.import_export'), :class => 'nav-header'
+      secondary.item :import_definitions, t('navigation.import_definitions'), import_definitions_path, :highlights_on => /import_definitions/ do |import_definition|
+        import_definition.item :import_definition_edit, @import_definition.name, edit_import_definition_path(@import_definition) if @import_definition && @import_definition.id?
+      end
       secondary.item :test_data, t('navigation.test_data'), :class => 'nav-header'
       secondary.item :request_generator, t('navigation.request_generators'), new_request_generator_path
       secondary.item :amplification_generator, t('navigation.amplification_generators'), new_amplification_generator_path

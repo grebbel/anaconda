@@ -7,6 +7,7 @@ class Assay < ActiveRecord::Base
   accepts_nested_attributes_for :assay_targets, :reject_if => lambda { |at| at[:target_id].blank? }, :allow_destroy => true  
   
   validates :name, :presence => true, :uniqueness => true
+  validates :description, :length => { :maximum => 255 }
 
   default_scope :order => :name
   

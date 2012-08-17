@@ -1,0 +1,12 @@
+- column_options = { :as => :select, :collection => spreadsheet_column_options, :value_method => lambda { |item| item[:value] }, :label_method => lambda { |item| puts item.to_yaml; item[:label] } }
+= simple_form_for @import_definition do |f|
+  %fieldset
+    = render 'shared/legend'
+    = f.input :name
+    = f.input :description, :as => :text, :input_html => {:cols => 80, :rows => 8}
+    = f.input :starting_row
+    = f.input :cycle_column, column_options 
+    = f.input :rn_column, column_options 
+    = f.input :delta_rn_column, column_options 
+    = render 'shared/form_buttons', :f => f
+  

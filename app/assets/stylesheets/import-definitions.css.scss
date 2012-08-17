@@ -1,0 +1,13 @@
+table.import-definitions {
+  td, th {
+    &.name {
+      width: 40%;
+    }
+    &.description {
+      width: 45%;
+    }
+    &.actions {
+      width: 15%;
+    }
+  }
+}

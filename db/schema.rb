@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120809133638) do
+ActiveRecord::Schema.define(:version => 20120816090959) do
 
   create_table "amplifications", :force => true do |t|
     t.integer  "analysis_id"
@@ -64,6 +64,17 @@ ActiveRecord::Schema.define(:version => 20120809133638) do
     t.float    "luminance",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "import_definitions", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "cycle_column"
+    t.integer  "rn_column"
+    t.integer  "delta_rn_column"
+    t.integer  "starting_row"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "requests", :force => true do |t|
