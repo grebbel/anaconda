@@ -74,6 +74,7 @@ en:
       import_definition: Import Definition
       excel_file: Excel File
       submit: Import
+      notice: Imported Amplification data.
     target: Target
     request: Request
     assay: Assay

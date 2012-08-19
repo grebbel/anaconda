@@ -91,6 +91,7 @@ class AnalysesController < ApplicationController
       analysis.amplifications = amplifications
       analysis.ct = analysis.calculate_ct
       analysis.save
+      flash[:notice] = t('analyses.import_amplifications.notice')
     end
     redirect_to :action => :show
   end
