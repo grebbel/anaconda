@@ -3,14 +3,19 @@
 - unless @analysis.amplifications.empty?
   %ul.nav.nav-tabs
     %li.active
-      %a{ :href => '#graph', :data => { :toggle => :tab } } Graph
+      %a{ :href => '#graph', :data => { :toggle => :tab } }= cat('graph')
     %li
-      %a{ :href => '#data', :data => { :toggle => :tab } } Data
+      %a{ :href => '#data', :data => { :toggle => :tab } }= cat('data')
+    %li
+      %a{ :href => '#import', :data => { :toggle => :tab } }= cat('import')
   .tab-content
     #graph.tab-pane.active
       = amplification_graph [@analysis]
       = analyses_results [@analysis]
     #data.tab-pane
-      = amplification_data @analysis
+      = amplification_data @analysis.amplifications
+    #import.tab-pane
+      = render 'import_amplifications'
 - else
-  = cat('no_amplification_data')
+  %p= cat('no_amplification_data')
+  = render 'import_amplifications'

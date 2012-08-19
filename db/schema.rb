@@ -69,10 +69,12 @@ ActiveRecord::Schema.define(:version => 20120816090959) do
   create_table "import_definitions", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.string   "sheet_name"
+    t.integer  "starting_row"
+    t.integer  "max_rows"
     t.integer  "cycle_column"
     t.integer  "rn_column"
     t.integer  "delta_rn_column"
-    t.integer  "starting_row"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end

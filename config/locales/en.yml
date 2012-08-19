@@ -56,6 +56,10 @@ en:
     create:
       generated: "Generated amplifications for %{analysis_count} analyses."
       none: Could not find analyses without amplification data. No amplification data generated.
+  amplifications:
+    cycle: Cycle
+    rn: RN
+    delta_rn: dRN
   analyses:
     breadcrumb_title: "%{target} analysis for %{request}"
     index:
@@ -63,9 +67,13 @@ en:
     show:
       no_amplification_data: No amplification data available yet.
       amplification_data: Amplification Data
-      cycle: Cycle
-      rn: RN
-      delta_rn: dRN
+      import_amplifications: Import Amplifications
+    import_amplifications:
+      title: Import Amplifications
+      info: Import amplifications from an Excel file. This will overwrite any existing amplification data.
+      import_definition: Import Definition
+      excel_file: Excel File
+      submit: Import
     target: Target
     request: Request
     assay: Assay
@@ -75,6 +83,9 @@ en:
     submit: Save Changes
     reset: Reset
     results_updated: "Updated analysis results."
+    graph: Graph
+    data: Data
+    import: Import
   application:
     name: Anaconda
   assays:
@@ -145,6 +156,13 @@ en:
       title: Edit Import Definition
     update:
       title: Update Import Definition
+    sheet_name_hint: Leave blank to use the first available sheet.
+    example_data:
+      title: Example Data Import
+      description: "Data imported from: %{filename}"
+    example_file: 
+      title: Test Import Settings
+      description: "Test import settings using an Excel file:"
   login:
     title: Log In
     remember_me: Keep me logged in

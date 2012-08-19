@@ -1,12 +1,22 @@
 - column_options = { :as => :select, :collection => spreadsheet_column_options, :value_method => lambda { |item| item[:value] }, :label_method => lambda { |item| puts item.to_yaml; item[:label] } }
-= simple_form_for @import_definition do |f|
+= simple_form_for @import_definition, :html => { :multipart => true } do |f|
   %fieldset
     = render 'shared/legend'
     = f.input :name
-    = f.input :description, :as => :text, :input_html => {:cols => 80, :rows => 8}
+    = f.input :sheet_name, :hint => cat('sheet_name_hint')
     = f.input :starting_row
+    = f.input :max_rows
     = f.input :cycle_column, column_options 
     = f.input :rn_column, column_options 
-    = f.input :delta_rn_column, column_options 
-    = render 'shared/form_buttons', :f => f
-  
+    = f.input :delta_rn_column, column_options
+    = f.input :description, :as => :text, :input_html => {:cols => 80, :rows => 8}
+  - if @amplifications
+    %fieldset
+      %legend= cat('example_data.title')
+      %p= cat('example_data.description', :filename => @filename)
+      = amplification_data @amplifications
+  %fieldset
+    %legend= cat('example_file.title')
+    %p= cat('example_file.description')
+    = file_field_tag :example_file  
+  = render 'shared/form_buttons', :f => f

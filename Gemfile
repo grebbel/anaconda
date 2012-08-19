@@ -16,6 +16,7 @@ gem 'simple-navigation'
 gem 'chosen-rails'
 gem 'active_attr'
 gem 'rabl'
+gem 'spreadsheet'
 
 # Gems used only for assets and not required
 # in production environments by default.

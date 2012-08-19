@@ -81,5 +81,18 @@ class AnalysesController < ApplicationController
     flash[:notice] = t('analyses.results_updated')
     redirect_to :back
   end
+  
+  def import_amplifications
+    excel_file = params[:excel_file]
+    if excel_file
+      import_definition = ImportDefinition.find(params[:import_definition_id])
+      amplifications = import_definition.read_amplifications excel_file.tempfile.path
+      analysis = Analysis.find(params[:id])
+      analysis.amplifications = amplifications
+      analysis.ct = analysis.calculate_ct
+      analysis.save
+    end
+    redirect_to :action => :show
+  end
 
 end

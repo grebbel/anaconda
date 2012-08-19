@@ -52,7 +52,7 @@ class Anaconda.AmplificationGraph
     
   getCycleRange: -> new Anaconda.Range(1, this.getMaxCycle())
 
-  getValueRange: -> new Anaconda.Range(-1.0, 1.0)
+  getValueRange: -> new Anaconda.Range(-0.2, 2.0)
   
   # Formatting
     

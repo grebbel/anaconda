@@ -6,13 +6,18 @@ describe ImportDefinition do
 
   it { should respond_to :description }
   
+  it { should respond_to :sheet_name }
+
+  it { should respond_to :starting_row }
+
+  it { should respond_to :max_rows }
+
   it { should respond_to :cycle_column }
   
   it { should respond_to :rn_column }
 
   it { should respond_to :delta_rn_column }
 
-  it { should respond_to :starting_row }
   
   describe "validation" do
     

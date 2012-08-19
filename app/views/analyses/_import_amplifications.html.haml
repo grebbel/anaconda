@@ -1,0 +1,12 @@
+%p= cat('import_amplifications.info')
+= form_tag import_amplifications_path(@analysis), :multipart => true do
+  %div.control-group
+    %label.control-label= cat('import_amplifications.excel_file')
+    .controls
+      = file_field_tag :excel_file
+  %div.control-group
+    %label.control-label= cat('import_amplifications.import_definition')
+    .controls
+      = select_tag :import_definition_id, options_from_collection_for_select(ImportDefinition.all, :id, :name)
+  .form-actions
+    = submit_tag cat('import_amplifications'),  :class => :btn

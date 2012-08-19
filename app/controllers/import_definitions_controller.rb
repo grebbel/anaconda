@@ -5,7 +5,7 @@ class ImportDefinitionsController < ApplicationController
   end
   
   def new
-    @import_definition = ImportDefinition.new
+    @import_definition = ImportDefinition.new(:starting_row => 1, :max_rows => 45)
     render :edit
   end
   
@@ -24,7 +24,13 @@ class ImportDefinitionsController < ApplicationController
   
   def update
     @import_definition = ImportDefinition.find(params[:id])
-    if @import_definition.update_attributes(params[:import_definition])
+    example_file = params[:example_file]
+    if example_file
+      @import_definition.attributes = params[:import_definition]
+      @amplifications = @import_definition.read_amplifications example_file.tempfile.path
+      @filename = example_file.original_filename
+      render :edit
+    elsif @import_definition.update_attributes(params[:import_definition])
       redirect_to_index
     else
       render :edit

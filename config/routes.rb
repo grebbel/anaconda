@@ -21,8 +21,11 @@ Anaconda::Application.routes.draw do
   end
   
   post '/tasks/:id/assign_to_user', :controller => :tasks, :action => :assign_to_user, :as => :assign_task_to_user
-  post '/analyses/calculate_ct', :controller => :analyses, :action => :calculate_ct, :as => :calculate_ct
-  post '/analyses/update_results', :controller => :analyses, :action => :update_results, :as => :update_analyses_results
+  scope :controller => :analyses, :path => '/analyses' do
+    post 'calculate_ct', :action => :calculate_ct, :as => :calculate_ct
+    post 'update_results', :action => :update_results, :as => :update_analyses_results
+    post ':id/import_amplifications', :action => :import_amplifications, :as => :import_amplifications
+  end
   
   devise_for :users
 
