@@ -13,7 +13,7 @@ class Anaconda.AmplificationGraph
       analysis.reset = ->
         this.treshold = treshold
         this.status = status
-        this.ct = ct
+        this.ct = ct        
 
   # Margins
 
@@ -51,8 +51,12 @@ class Anaconda.AmplificationGraph
       
     
   getCycleRange: -> new Anaconda.Range(1, this.getMaxCycle())
+    
+  defaultValueRange: -> new Anaconda.Range(-0.2, 2.0)
 
-  getValueRange: -> new Anaconda.Range(-0.2, 2.0)
+  getValueRange: -> 
+    @valueRange = this._determineValueRange() unless @valueRange
+    @valueRange
   
   # Formatting
     
@@ -98,6 +102,16 @@ class Anaconda.AmplificationGraph
     @stage.add(this._createCycleLegendLayer())
     @stage.add(this._createValueLegendLayer())
     @stage.add(this._createAxesLayer())
+    
+  _determineValueRange: (margin = 0.1) -> 
+    range = this.defaultValueRange()
+    @analyses.forEach (analysis)-> 
+      if analysis.amplifications
+        analysis.amplifications.forEach (amplification) ->
+          value = amplification.delta_rn
+          range.min = value if range.min < range.min
+          range.max = value if value > range.max
+    range
     
   # Drawing operations  
   
