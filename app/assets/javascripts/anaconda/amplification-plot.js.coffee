@@ -114,6 +114,11 @@ class Anaconda.AmplificationPlot
         $('span.ct', @$overlay).css('z-index', 0);      
         $(this).css('z-index', 1)
       @$ctLabel.click (event) => $(event.target).trigger(Anaconda.ANALYSIS_SELECTED_EVENT, { analysisId: @analysis.id })
+      @$ctLabel.popover(
+        content: this._popoverContent()
+        placement: 'bottom'
+        title: @analysis.target.name
+      )
     else
       @$ctLabel.hide() if @$ctLabel      
   
