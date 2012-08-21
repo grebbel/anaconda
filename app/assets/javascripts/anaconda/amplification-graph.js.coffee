@@ -52,7 +52,9 @@ class Anaconda.AmplificationGraph
     
   getCycleRange: -> new Anaconda.Range(1, this.getMaxCycle())
     
-  defaultValueRange: -> new Anaconda.Range(-0.2, 2.0)
+  defaultValueRange: -> new Anaconda.Range(0, 1.9)
+  
+  valueRangeMargin: 0.1
 
   getValueRange: -> 
     @valueRange = this._determineValueRange() unless @valueRange
@@ -103,14 +105,16 @@ class Anaconda.AmplificationGraph
     @stage.add(this._createValueLegendLayer())
     @stage.add(this._createAxesLayer())
     
-  _determineValueRange: (margin = 0.1) -> 
+  _determineValueRange: -> 
     range = this.defaultValueRange()
     @analyses.forEach (analysis)-> 
       if analysis.amplifications
         analysis.amplifications.forEach (amplification) ->
           value = amplification.delta_rn
-          range.min = value if range.min < range.min
+          range.min = value if value < range.min
           range.max = value if value > range.max
+    range.min = (Math.round(range.min * 10) / 10) - @valueRangeMargin
+    range.max = (Math.round(range.max * 10) / 10) + @valueRangeMargin
     range
     
   # Drawing operations  
@@ -193,7 +197,7 @@ class Anaconda.AmplificationGraph
     )
     valueRange = this.getValueRange()
     verticalRange = this.getVerticalRange()
-    valueRange.intervals(0.2).forEach (value) =>
+    valueRange.intervals(0.1).forEach (value) =>
       y = valueRange.map(value, verticalRange, true)
       text = new Kinetic.Text(
         x: 0

@@ -116,7 +116,7 @@ class Anaconda.AmplificationPlot
       @$ctLabel.click (event) => $(event.target).trigger(Anaconda.ANALYSIS_SELECTED_EVENT, { analysisId: @analysis.id })
       @$ctLabel.popover(
         content: this._popoverContent()
-        placement: 'bottom'
+        placement: 'top'
         title: @analysis.target.name
       )
     else
@@ -127,16 +127,16 @@ class Anaconda.AmplificationPlot
       <div class='ct'>
         <table>
           <tr>
+            <th>Assay</th>
+            <td>#{@analysis.assay.name}</td>
+          </tr>
+          <tr>
             <th>CT</th>
             <td>#{$.format.number(@analysis.ct, '0.00')}</td>
           </tr>
           <tr>
             <th>Treshold</th>
             <td>#{$.format.number(@analysis.treshold, '0.00')}</td>
-          </tr>
-          <tr>
-            <th>Assay</th>
-            <td>#{@analysis.assay.name}</td>
           </tr>
         </table>                
       </div>
