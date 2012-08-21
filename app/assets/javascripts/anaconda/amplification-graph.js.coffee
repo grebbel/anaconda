@@ -172,7 +172,7 @@ class Anaconda.AmplificationGraph
     cycleRange = this.getCycleRange()
     horizontalRange = this.getHorizontalRange()
     intervals = cycleRange.intervals(2)
-    cycleRange.intervals(2).forEach (cycle) =>
+    cycleRange.intervals(1).forEach (cycle) =>
       x = cycleRange.map(cycle, horizontalRange)
       width = Math.floor((horizontalRange.range() * 1.0 / intervals.length))
       text = new Kinetic.Text(
